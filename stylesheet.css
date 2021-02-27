@@ -1,0 +1,344 @@
+*, :after, :before {
+    box-sizing: border-box;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    color: #8e9297;
+    font-family: 'Roboto Condensed';    
+    font-size: 16px;
+}
+/* 
+    HEADER
+*/
+header {
+    background: linear-gradient(to right, #485461 0%, #28313b 100%);
+    width: 100%;
+    min-height: 75px;
+    padding: 5px;
+    display: flex;
+    justify-content: flex-start;
+    border-bottom: solid 1px;
+    border-image: linear-gradient(to left, #485461 0%, transparent 100%) 1;
+}
+#head {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 5px;
+}
+#main-title {
+    font-size: 30px;
+}
+#sub-title {
+    color: #8e929780;
+}
+.logo {
+    height: 65px;
+}
+#a {
+    height: 65px;
+}
+
+/* ------------------------- */
+/* ------------------------- */
+/* ------------------------- */
+
+/* CONTENT CONTAINER */
+.content-container {
+    display: grid;
+    grid-template-columns: minmax(150px, 25%) 1fr 1fr;
+    min-height: 100vh;
+    background: linear-gradient(to top, #485461, #28313b);
+}
+
+/* INFO */
+.info-container {
+    padding: 1em;
+    text-align: right;
+    border-right: solid 1px;
+    border-image: linear-gradient(to bottom, #485461 0%, transparent 100%) 1;
+}
+
+/* INPUT */
+.input-container {
+    padding: 1em;
+    text-align: left;
+    border-right: solid 1px;
+    border-image: linear-gradient(to bottom, #485461 0%, transparent 100%) 1;
+}
+
+/* OUTPUT */
+.output-container {
+    padding: 1em;
+    /* text-align: left; */
+}
+
+/* TITLES */
+.titles {
+    display: grid;
+    /* place-items: center; */
+    margin-bottom: 16px;
+    font-size: 32px;
+}
+
+/* SETTING TOP MARGINS */
+.input-container form > *+*, .info-container > *+* {
+    margin-top: 1em;
+}
+
+/* ------------------------- */
+/* ------------------------- */
+/* ------------------------- */
+
+
+
+/* 
+    SELECT BOX STYLING
+*/
+select {
+    width: 100%;
+    padding:10px;
+    border: none;
+    border-bottom: 1px solid #485461;
+    font-size: 16px;
+    color: #8e9297;
+    background-color: transparent;
+    appearance: none;
+    cursor: pointer;
+    display: block;
+}
+select:after {
+    content: "";
+    width: 0;
+    height: 0;
+    border-bottom: 100px solid rgb(126, 91, 255);
+    border-left: 100px solid transparent;
+    position: absolute;
+}
+
+/* 
+    STYLING NUMBER INPUTS
+*/
+input[type=number] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    outline: none;
+    border: none;
+    border-bottom: solid 1px #485461;
+    color: #8e9297;
+    background: transparent;
+    -moz-appearance: textfield;
+}
+#convert-sens-from:focus, #dpi:focus, #sens:focus, #icm:focus, #fov:focus, #new-fov:focus {
+    border-bottom: solid 1px #8e9297;
+}
+/* hide default arrows on chrome etc. */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/*  
+    CHECKBOX STYLING 
+*/
+/* hide default checkbox */
+.button-container input {
+    position: absolute;
+    opacity: 0;
+    height: 0;
+    width: 0;
+    cursor: pointer;
+}
+/* the container */
+.button-container {
+    display: block;
+    position: relative;
+    padding-left: 33px;
+    padding-right: 33px;
+    padding-top: 2px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+/* create the custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 23px;
+    width: 23px;
+    background-color: #28313b;
+    border: 1px solid #202225;
+    transition-duration: 0.25s;
+}
+/* create the custom radio button */
+.radiomark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 23px;
+    width: 23px;
+    background-color: #28313b;
+    border-radius: 50%;
+    border: 1px solid #202225;
+    transition-duration: 0.25s;
+}
+/* on mouse-over, change background color */
+.button-container:hover input ~ .checkmark, .button-container:hover input ~ .radiomark {
+    background-color: #292b2f;
+}
+.button-container:hover {
+    color: #8e9297a1;
+}
+/* when the checkbox is checked, change background color */
+.button-container input:checked ~ .checkmark, .button-container input:checked ~ .radiomark {
+    background-color:#485461;
+}
+/* create the checkmark/indicator (hidden when not checked) */
+.checkmark:after, .radiomark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+/* show the checkmark when checked */
+.button-container input:checked ~ .checkmark:after, .button-container input:checked ~ .radiomark:after {
+    display: block;
+}
+/* style the checkmark/indicator */
+.button-container .checkmark:after {
+    left: 8px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid #202225;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+/* styled radio indicator */
+.button-container .radiomark:after {
+    top: 5px;
+    left: 5px;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: #202225;
+}
+
+/* 
+    BUTTON
+*/
+.butt {
+    background-image: url(https://media.discordapp.net/attachments/464469303928815616/811709841667915837/die-edit-4.png);
+    background-color: transparent;
+    background-size: cover;
+    border: none;
+    height: 23px;
+    width: 23px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    -webkit-transition: background-image 0.25s;
+    transition: background-image 0.25s;
+}
+.butt:hover {
+    background-image: url(https://media.discordapp.net/attachments/464469303928815616/811708492225970196/die-edit-4.png);
+}
+.butt:active {
+    background-image: url(https://media.discordapp.net/attachments/464469303928815616/811691592653864980/die-edit-0.png);
+    -webkit-transition: background-image 0.25s;
+    transition: background-image 0.25s;
+}
+
+/*               */
+/* TABLE STYLING */
+/*               */
+table {
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #28313b;
+    margin-bottom: 1em;
+}
+th {
+    text-align: left;
+    padding: 8px;
+    background: rgba(0, 0, 0, 0.150);
+}
+td {
+    text-align: left;
+    padding: 8px;
+}
+tr:nth-child(odd){background: rgba(0, 0, 0, 0.10)}
+
+/* 
+    TOOL TIP STYLING
+*/
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 80px;
+    height: 25px;
+    background-image: url(https://media.discordapp.net/attachments/411883181781024770/809767657275785236/mikeyTrollface.png);
+    background-size: contain;
+    /* background-color: transparent; */
+    color: #eee;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -40px;
+    opacity: 0;
+    transition: opacity 0.3s;
+} 
+/* .tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+} */
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+/* 
+    FOOTER
+*/
+footer {
+    background: #292b2f;
+    height: 60px;
+    min-height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 1000px) {
+    .calculator {
+        flex-wrap: wrap;
+    }
+}
+/* HIDE SCROLLBAR */
+:root{ scrollbar-width: none !important }
+body::-webkit-scrollbar {
+    display: none;
+}
