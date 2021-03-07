@@ -45,32 +45,56 @@ header {
 /* ------------------------- */
 /* ------------------------- */
 
+:root {
+    --background-color: #28313b;
+    --background-color-light: #485461;
+    --text-color: #8e9297;
+    --dark-color: #202225;
+    --less-dark-color: #292b2f;
+}
+
 /* CONTENT CONTAINER */
 .content-container {
-    display: grid;
-    grid-template-columns: minmax(150px, 25%) 1fr 1fr;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* display: grid;
+    grid-template-columns: minmax(306px, 25%) 1fr 1fr; */
     min-height: 100vh;
     background: linear-gradient(to top, #485461, #28313b);
 }
 
 /* INFO */
 .info-container {
+    flex: 1 0 277px;
     padding: 1em;
     text-align: right;
     border-right: solid 1px;
     border-image: linear-gradient(to bottom, #485461 0%, transparent 100%) 1;
 }
+@media (max-width: 553px) {
+    .input-container {
+        border: none;
+    }
+}
 
 /* INPUT */
 .input-container {
+    flex: 2 0 277px;
     padding: 1em;
     text-align: left;
     border-right: solid 1px;
     border-image: linear-gradient(to bottom, #485461 0%, transparent 100%) 1;
 }
+@media (max-width: 957px) {
+    .input-container {
+        border: none;
+    }
+}
 
 /* OUTPUT */
 .output-container {
+    flex: 2 0 404px;
     padding: 1em;
     /* text-align: left; */
 }
@@ -94,29 +118,110 @@ header {
 
 
 
-/* 
-    SELECT BOX STYLING
-*/
-select {
+/* -------------------------------------------------- */
+/* --------------- SELECT BOX STYLING --------------- */
+/* -------------------------------------------------- */
+.select-container {
+    height: 59px;
+}
+
+.select-box {
+    display: flex;
     width: 100%;
-    padding:10px;
+    flex-direction: column;
+}
+
+.select-box .options-container {
+    background: #38434E;
+    max-height: 0;
+    width: 100%;
+    border-left: solid 1px;
+    border-right: solid 1px;
+    border-image: linear-gradient(to bottom, var(--background-color-light) 0%, transparent 100%) 1;
+    opacity: 0;
+    transition: all 0.4s;
+    overflow: hidden;
+    scrollbar-width: none;
+    order: 1;
+}
+/* HIDE SCROLLBAR ON CHROME */
+*::-webkit-scrollbar {
+    display: none;
+}
+
+.select-box .options-container.active {
+    max-height: 160px;
+    opacity: 1;
+    overflow-y: scroll;
+    z-index: 99;
+}
+
+.selected {
+    height: 40px;
+    background: transparent;
     border: none;
-    border-bottom: 1px solid #485461;
-    font-size: 16px;
-    color: #8e9297;
-    background-color: transparent;
-    appearance: none;
+    border-bottom: 1px solid var(--background-color-light);
+    order: 0;
+}
+.selected:focus {
+    border-bottom: 1px solid var(--text-color);
+}
+
+/* .select-box::after {
+    content: "";
+    mask: url('img/arrow-down.svg');
+    background: #8e9297;
+    mask-size: contain;
+    position: relative;
+    z-index: 100;
+    height: 32px;
+    width: 32px;
+    left: 11%;
+    bottom: 11%;
+    transition: all 0.4s;
+} */
+
+/* .select-box .options-container.active + .select-box::after {
+    transform: rotateX(180deg);
+} */
+
+/* .select-box .options-container::-webkit-scrollbar {
+    width: 8px;
+    background: #06141f;
+}
+
+.select-box .options-container::-webkit-scrollbar-thumb {
+    width: 8px;
+    background: #525861;
+} */
+
+.select-box .option,
+.selected {
+    cursor: pointer;
+}
+
+.selected {
+    padding: 10px;
+}
+
+.select-box .option:hover {
+    background: #485461;
+}
+
+.select-box label {
     cursor: pointer;
     display: block;
+    height: 40px;
+    padding: 10px;
 }
-select:after {
-    content: "";
-    width: 0;
-    height: 0;
-    border-bottom: 100px solid rgb(126, 91, 255);
-    border-left: 100px solid transparent;
-    position: absolute;
+
+.select-box .option .radio {
+    display: none;
 }
+
+/* -------------------------------------------------- */
+/* -------------------------------------------------- */
+/* -------------------------------------------------- */
 
 /* 
     STYLING NUMBER INPUTS
@@ -157,7 +262,7 @@ input::-webkit-inner-spin-button {
 .button-container {
     display: block;
     position: relative;
-    padding-left: 33px;
+    /* padding-left: 33px; */
     padding-right: 33px;
     padding-top: 2px;
     cursor: pointer;
@@ -280,6 +385,18 @@ td {
 }
 tr:nth-child(odd){background: rgba(0, 0, 0, 0.10)}
 
+.default-range:after {
+    content: 'Range';
+}
+.coefficient-range:after {
+    content: 'Coefficient';
+}
+.focal-length-range::after {
+    content: 'Scaled by Focal Length';
+}
+.overwatch-range:after {
+    content: 'Range/Zoom Coefficient';
+}
 /* 
     TOOL TIP STYLING
 */
