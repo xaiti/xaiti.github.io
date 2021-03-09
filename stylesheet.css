@@ -48,6 +48,7 @@ header {
 :root {
     --background-color: #28313b;
     --background-color-light: #485461;
+    --background-color-center: #38434E;
     --text-color: #8e9297;
     --dark-color: #202225;
     --less-dark-color: #292b2f;
@@ -226,7 +227,7 @@ header {
 /* 
     STYLING NUMBER INPUTS
 */
-input[type=number] {
+.number-input {
     width: 100%;
     padding: 10px;
     font-size: 16px;
@@ -237,7 +238,7 @@ input[type=number] {
     background: transparent;
     -moz-appearance: textfield;
 }
-#convert-sens-from:focus, #dpi:focus, #sens:focus, #icm:focus, #fov:focus, #new-fov:focus {
+.number-input:focus {
     border-bottom: solid 1px #8e9297;
 }
 /* hide default arrows on chrome etc. */
@@ -363,6 +364,21 @@ input::-webkit-inner-spin-button {
     transition: background-image 0.25s;
 }
 
+/* RANDOM SENS BUTTON */
+#inner-sens-container {
+    display: flex;
+}
+#random-sens-button {
+    height: 40px;
+    width: 40px;
+    display: inline-block;
+    border-bottom: 1px solid var(--background-color-light);
+    cursor: pointer;
+}
+#sens:focus ~ #random-sens-button {
+    border-bottom: 1px solid var(--text-color);
+}
+
 /*               */
 /* TABLE STYLING */
 /*               */
@@ -397,46 +413,47 @@ tr:nth-child(odd){background: rgba(0, 0, 0, 0.10)}
 .overwatch-range:after {
     content: 'Range/Zoom Coefficient';
 }
+
 /* 
     TOOL TIP STYLING
 */
+/* TOOLTIPS */
+/* TOOLTIPS */
+/* TOOLTIPS */
+/* TOOLTIPS */
+/* TOOLTIPS */
+/* TOOLTIPS */
+
+/* Tooltip container */
 .tooltip {
     position: relative;
     display: inline-block;
-}
+  }
+  
+/* Tooltip text */
 .tooltip .tooltiptext {
     visibility: hidden;
-    width: 80px;
-    height: 25px;
-    background-image: url(https://media.discordapp.net/attachments/411883181781024770/809767657275785236/mikeyTrollface.png);
-    background-size: contain;
-    /* background-color: transparent; */
-    color: #eee;
+    width: 120px;
+    background-color: var(--background-color-center);
+    color: var(--text-color);
     text-align: center;
     border-radius: 6px;
     padding: 5px 0;
+    
+    /* Position the tooltip */
     position: absolute;
     z-index: 1;
-    bottom: 125%;
+    bottom: 110%;
     left: 50%;
-    margin-left: -40px;
-    opacity: 0;
-    transition: opacity 0.3s;
-} 
-/* .tooltip .tooltiptext::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: #555 transparent transparent transparent;
-} */
-.tooltip:hover .tooltiptext {
-    visibility: visible;
-    opacity: 1;
+    margin-left: -60px;
 }
+  
+  /* Show the tooltip text when you mouse over the tooltip container */
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+  }
+
+
 /* 
     FOOTER
 */

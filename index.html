@@ -52,9 +52,9 @@
                 </label>
                 
                 <!-- SENSITIVITY RANDOMIZER -->
-                <label class="button-container">Sensitivity Randomizer
+                <!-- <label class="button-container">Sensitivity Randomizer
                     <button class="butt" type="button" onclick="randomSensFunc()"></button>
-                </label>
+                </label> -->
                 <!-- RANDOM COEFFICIENT -->
                 <div id="random-co-container" style="display: none;">
                     <label class="button-container">Random Coefficient
@@ -109,19 +109,27 @@
                         <!-- DPI INPUT -->
                         <div>
                             <label for="dpi">DPI:</label>
-                            <input id="dpi" type="number" step="any" placeholder="800">
+                            <input id="dpi" class="number-input" type="number" step="any" placeholder="800">
                         </div>
 
                         <!-- SENSITIVITY INPUT -->
                         <div id="sens-container">
                             <label for="sens">Sensitivity:</label>
-                            <input id="sens" type="number" step="any" placeholder="6">
+                            <div id="inner-sens-container">
+                                <input id="sens" class="number-input" type="number" step="any" placeholder="6">
+                                <!-- sens ramdomizer -->
+                                <div id="random-sens-button" class="tooltip">
+                                    <img src="img/rolling-dices (1).svg" onclick="randomSensFunc()">
+                                    <span class="tooltiptext">Sensitivity Randomizer</span>
+                                </div>
+                            </div>
                         </div>
+                    
 
                         <!-- CM/360 INPUT -->
                         <div id="icm-container" style="display:none">
                             <label for="icm">cm/360:</label>
-                            <input id="icm" type="number" step="any" placeholder="30">
+                            <input id="icm" class="number-input" type="number" step="any" placeholder="30">
                         </div>
 
                         <!-- GAME SPECIFIC OPTIONS -->
@@ -129,60 +137,60 @@
                         <div class="overwatch-zoom-container">
                         <div id="overwatch-zoom1-container">
                             <label>Widowmaker/Ana Zoom:</label>
-                            <input type="number" id="overwatch-widow-input" step="any" placeholder="37.89">
+                            <input class="number-input" type="number" id="overwatch-widow-input" step="any" placeholder="37.89">
                         </div>
                         <div id="overwatch-zoom2-container" style="margin-top: 1em;">
                             <label>Ashe Zoom:</label>
-                            <input type="number" id="overwatch-ashe-input" step="any" placeholder="51.47">
+                            <input class="number-input" type="number" id="overwatch-ashe-input" step="any" placeholder="51.47">
                         </div>
                         </div>
                         <!-- CS:GO ZOOM SENS -->
                         <div class="cs-zoom-container">
                             <label>Zoom Sensitivity:</label>
-                            <input type="number" id="cs-zoom-input" step="any" placeholder="0.82">
+                            <input class="number-input" type="number" id="cs-zoom-input" step="any" placeholder="0.82">
                         </div>
                         <!-- APEX ZOOM SENS -->
                         <div class="apex-zoom-container">
                         <div>
                             <label>1x Optic / Iron Sights:</label>
-                            <input type="number" id="apex-1x-input" step="any" placeholder="1">
+                            <input class="number-input" type="number" id="apex-1x-input" step="any" placeholder="1">
                         </div>
                         <div style="margin-top: 1em;">
                             <label>2x Optic:</label>
-                            <input type="number" id="apex-2x-input" step="any" placeholder="1">
+                            <input class="number-input" type="number" id="apex-2x-input" step="any" placeholder="1">
                         </div>
                         <div style="margin-top: 1em">
                             <label>3x Optic:</label>
-                            <input type="number" id="apex-3x-input" step="any" placeholder="1">
+                            <input class="number-input" type="number" id="apex-3x-input" step="any" placeholder="1">
                         </div>
                         <div style="margin-top: 1em;">
                             <label>4x Optic:</label>
-                            <input type="number" id="apex-4x-input" step="any" placeholder="1">
+                            <input class="number-input" type="number" id="apex-4x-input" step="any" placeholder="1">
                         </div>
                         <div style="margin-top: 1em;">
                             <label>6x Optic:</label>
-                            <input type="number" id="apex-6x-input" step="any" placeholder="1">
+                            <input class="number-input" type="number" id="apex-6x-input" step="any" placeholder="1">
                         </div>
                         <div style="margin-top: 1em;">
                             <label>8x Optic:</label>
-                            <input type="number" id="apex-8x-input" step="any" placeholder="1">
+                            <input class="number-input" type="number" id="apex-8x-input" step="any" placeholder="1">
                         </div>
                         <div style="margin-top: 1em;">
                             <label>10x Optic:</label>
-                            <input type="number" id="apex-10x-input" step="any" placeholder="1">
+                            <input class="number-input" type="number" id="apex-10x-input" step="any" placeholder="1">
                         </div>
                         </div>
 
                         <!-- FOV INPUT -->
                         <div id="fov-container">
                             <label for="fov">FOV:</label>
-                            <input id="fov" type="number" step="any" placeholder="103">
+                            <input id="fov" class="number-input" type="number" step="any" placeholder="103">
                         </div>
 
                         <!-- NEW FOV INPUT -->
                         <div id="new-fov-container" style="display: none;">
                             <label for="new-fov">New FOV:</label>
-                            <input id="new-fov" type="number" step="any" placeholder="113">
+                            <input id="new-fov" class="number-input" type="number" step="any" placeholder="113">
                         </div>
                         
                         <!-- FOV RADIO BUTTONS -->
@@ -205,7 +213,7 @@
                         <!-- COEFFICIENT INPUT -->
                         <div id="coefficient-container" style="display: none;">
                             <label for="coefficient">Coefficient:</label>
-                            <input id="coefficient" type="number" step="any" placeholder="1.1">
+                            <input id="coefficient" class="number-input" type="number" step="any" placeholder="1.1">
                         </div>
                         
                     </form>

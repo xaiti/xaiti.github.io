@@ -44,11 +44,14 @@ function zoomSensFunc() {
 
 // RANDOM SENSITIVITY FUNCTION
 function randomSensFunc() {
-  var mDecimal = document.getElementById('mDecimal');
-  var icm      = document.getElementById('icm');
-  var sens     = document.getElementById('sens');
-  var dpi      = $('#dpi').val() || '800';
-  var yaw      = $('#convert-sens-from').val();
+  const mDecimal = document.getElementById('mDecimal');
+  const icm      = document.getElementById('icm');
+  const sens     = document.getElementById('sens');
+  const dpi      = $('#dpi').val() || '800';
+  const rbs    = document.querySelectorAll('input[name="game"]');
+  let yaw; for (const rb of rbs) {if (rb.checked) {yaw = rb.value;break;}}
+  $('#overwatch').val('0.0066');$('#apex').val('0.022');$('#cs').val('0.022');
+  $('#valorant').val('0.07');$('#fortnite').val('0.005555');$('#quake').val('0.022');
 
   var generate = Math.random() * 100;
   var low      = Math.random() * (45 - 34.99) + 34.99;
@@ -68,8 +71,9 @@ function randomSensFunc() {
   high
   : 1.33;
 
-  icm.value  = Number(random).toFixed(mDecimal.checked ? 5 : 2);
-  sens.value = Number(2.54 * 360 / (random * yaw * dpi)).toFixed(mDecimal.checked ? 5 : 2);
+  icm.value  = random.toFixed(mDecimal.checked ? 5 : 2);
+  sens.value = (2.54 * 360 / (random * yaw * dpi)).toFixed(mDecimal.checked ? 5 : 2);
+  console.log(random, icm.value, sens.value)
 }
 
 // RANDOM COEFFICIENT FUNCTION
