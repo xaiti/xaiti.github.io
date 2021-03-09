@@ -2,6 +2,16 @@
     box-sizing: border-box;
 }
 
+/* variables */
+:root {
+    --background-color: #28313b;
+    --background-color-light: #485461;
+    --background-color-center: #38434E;
+    --text-color: #8e9297;
+    --dark-color: #202225;
+    --less-dark-color: #292b2f;
+}
+
 body {
     padding: 0;
     margin: 0;
@@ -13,7 +23,7 @@ body {
     HEADER
 */
 header {
-    background: linear-gradient(to right, #485461 0%, #28313b 100%);
+    background: linear-gradient(to right, var(--background-color-center) 0%, var(--background-color) 100%);
     width: 100%;
     min-height: 75px;
     padding: 5px;
@@ -41,20 +51,12 @@ header {
     height: 65px;
 }
 
+
+
 /* ------------------------- */
-/* ------------------------- */
+/* --- CONTENT CONTAINER --- */
 /* ------------------------- */
 
-:root {
-    --background-color: #28313b;
-    --background-color-light: #485461;
-    --background-color-center: #38434E;
-    --text-color: #8e9297;
-    --dark-color: #202225;
-    --less-dark-color: #292b2f;
-}
-
-/* CONTENT CONTAINER */
 .content-container {
     display: flex;
     flex-wrap: wrap;
@@ -62,10 +64,13 @@ header {
     /* display: grid;
     grid-template-columns: minmax(306px, 25%) 1fr 1fr; */
     min-height: 100vh;
-    background: linear-gradient(to top, #485461, #28313b);
+    background: linear-gradient(to bottom, var(--background-color), var(--background-color-center));
 }
 
+/* ---- */
 /* INFO */
+/* ---- */
+
 .info-container {
     flex: 1 0 277px;
     padding: 1em;
@@ -79,7 +84,10 @@ header {
     }
 }
 
+/* ----- */
 /* INPUT */
+/* ----- */
+
 .input-container {
     flex: 2 0 277px;
     padding: 1em;
@@ -93,7 +101,10 @@ header {
     }
 }
 
+/* ------ */
 /* OUTPUT */
+/* ------ */
+
 .output-container {
     flex: 2 0 404px;
     padding: 1em;
@@ -113,15 +124,12 @@ header {
     margin-top: 1em;
 }
 
-/* ------------------------- */
-/* ------------------------- */
-/* ------------------------- */
 
 
+/* -------------------------- */
+/* --- SELECT BOX STYLING --- */
+/* -------------------------- */
 
-/* -------------------------------------------------- */
-/* --------------- SELECT BOX STYLING --------------- */
-/* -------------------------------------------------- */
 .select-container {
     height: 59px;
 }
@@ -220,22 +228,22 @@ header {
     display: none;
 }
 
-/* -------------------------------------------------- */
-/* -------------------------------------------------- */
-/* -------------------------------------------------- */
 
-/* 
-    STYLING NUMBER INPUTS
-*/
+
+/* ----------------------------- */
+/* --- STYLING NUMBER INPUTS --- */
+/* ----------------------------- */
+
 .number-input {
     width: 100%;
-    padding: 10px;
+    padding: 10px 0 10px 10px;
     font-size: 16px;
     outline: none;
     border: none;
     border-bottom: solid 1px #485461;
     color: #8e9297;
     background: transparent;
+    transition: all 0.2s;
     -moz-appearance: textfield;
 }
 .number-input:focus {
@@ -248,9 +256,10 @@ input::-webkit-inner-spin-button {
     margin: 0;
 }
 
-/*  
-    CHECKBOX STYLING 
-*/
+/* ------------------------ */ 
+/* --- CHECKBOX STYLING --- */   
+/* ------------------------ */
+
 /* hide default checkbox */
 .button-container input {
     position: absolute;
@@ -338,9 +347,10 @@ input::-webkit-inner-spin-button {
     background: #202225;
 }
 
-/* 
-    BUTTON
-*/
+/* ---------------------- */
+/* --- BUTTON STYLING --- */
+/* ---------------------- */
+
 .butt {
     background-image: url(https://media.discordapp.net/attachments/464469303928815616/811709841667915837/die-edit-4.png);
     background-color: transparent;
@@ -364,24 +374,50 @@ input::-webkit-inner-spin-button {
     transition: background-image 0.25s;
 }
 
-/* RANDOM SENS BUTTON */
-#inner-sens-container {
+
+
+/* --------------------- */
+/* --- RANDOM BUTTON --- */
+/* --------------------- */
+
+.inner-container {
     display: flex;
 }
-#random-sens-button {
-    height: 40px;
+.random-button {
+    display: grid;
+    place-items: center;
     width: 40px;
-    display: inline-block;
+    height: 40px;
     border-bottom: 1px solid var(--background-color-light);
+    transition: all 0.2s;
     cursor: pointer;
 }
-#sens:focus ~ #random-sens-button {
-    border-bottom: 1px solid var(--text-color);
+/* dice roll svg */
+.dice-roll {
+    content: '';
+    width: 36px;
+    height: 36px;
+    mask: url(img/rolling-dices.svg);
+    mask-size: contain;
+    background: var(--background-color-light);
+    transition: all 0.3s;
+}
+.random-button:hover > .dice-roll {
+    background: var(--text-color);
+}
+.number-input:focus ~ .random-button {
+    border-bottom: solid 1px #8e9297;
+}
+.number-input:focus ~ .random-button > .dice-roll {
+    background: var(--text-color);
 }
 
-/*               */
-/* TABLE STYLING */
-/*               */
+
+
+/* --------------------- */
+/* --- TABLE STYLING --- */
+/* --------------------- */
+
 table {
     table-layout: fixed;
     border-collapse: collapse;
@@ -413,22 +449,16 @@ tr:nth-child(odd){background: rgba(0, 0, 0, 0.10)}
 .overwatch-range:after {
     content: 'Range/Zoom Coefficient';
 }
-/* 
-    TOOL TIP STYLING
-*/
-/* TOOLTIPS */
-/* TOOLTIPS */
-/* TOOLTIPS */
-/* TOOLTIPS */
-/* TOOLTIPS */
-/* TOOLTIPS */
+
+/* ------------------------ */
+/* --- TOOL TIP STYLING --- */
+/* ------------------------ */
 
 /* Tooltip container */
 .tooltip {
     position: relative;
     display: inline-block;
-  }
-  
+}  
 /* Tooltip text */
 .tooltip .tooltiptext {
     visibility: hidden;
@@ -438,19 +468,32 @@ tr:nth-child(odd){background: rgba(0, 0, 0, 0.10)}
     text-align: center;
     border-radius: 6px;
     padding: 5px 0;
-    
     /* Position the tooltip */
     position: absolute;
     z-index: 1;
-    bottom: 110%;
+    bottom: 120%;
     left: 50%;
     margin-left: -60px;
+    /* fade in */
+    opacity: 0;
+    transition: all 0.3s;
 }
-  
-  /* Show the tooltip text when you mouse over the tooltip container */
-  .tooltip:hover .tooltiptext {
+/* bottom arrow */
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: var(--background-color-center) transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
     visibility: visible;
-  }
+    opacity: 1;
+}
 
 
 /* 

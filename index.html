@@ -115,11 +115,11 @@
                         <!-- SENSITIVITY INPUT -->
                         <div id="sens-container">
                             <label for="sens">Sensitivity:</label>
-                            <div id="inner-sens-container">
+                            <div class="inner-container">
                                 <input id="sens" class="number-input" type="number" step="any" placeholder="6">
                                 <!-- sens ramdomizer -->
-                                <div id="random-sens-button" class="tooltip">
-                                    <img src="img/rolling-dices (1).svg" onclick="randomSensFunc()">
+                                <div class="random-button tooltip" onclick="randomSensFunc()">
+                                    <div class="dice-roll"></div>
                                     <span class="tooltiptext">Sensitivity Randomizer</span>
                                 </div>
                             </div>
@@ -207,13 +207,20 @@
                             <label class="button-container" for="1by1i" style="padding-left: 33px; margin-top: 4px;">1:1 Vertical
                                 <input type="radio" name="fov" id="1by1i" value="1/1">
                                 <span class="radiomark"></span>
-                            </label>   
+                            </label>
                         </div>
                         
                         <!-- COEFFICIENT INPUT -->
                         <div id="coefficient-container" style="display: none;">
                             <label for="coefficient">Coefficient:</label>
-                            <input id="coefficient" class="number-input" type="number" step="any" placeholder="1.1">
+                            <div class="inner-container">
+                                <input id="coefficient" class="number-input" type="number" step="any" placeholder="1.1">
+                                <!-- coefficient randomizer -->
+                                <div class="random-button tooltip">
+                                    <div class="dice-roll" onclick="randomCoefficientFunc()"></div>
+                                    <span class="tooltiptext">Coefficient Randomizer</span>
+                                </div>
+                            </div>
                         </div>
                         
                     </form>
