@@ -413,7 +413,6 @@ tr:nth-child(odd){background: rgba(0, 0, 0, 0.10)}
 .overwatch-range:after {
     content: 'Range/Zoom Coefficient';
 }
-
 /* 
     TOOL TIP STYLING
 */
