@@ -398,6 +398,7 @@ input::-webkit-inner-spin-button {
     width: 36px;
     height: 36px;
     mask: url(img/rolling-dices.svg);
+    -webkit-mask-image: url(img/rolling-dices.svg);
     mask-size: contain;
     background: var(--background-color-light);
     transition: all 0.3s;
