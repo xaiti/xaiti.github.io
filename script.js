@@ -1,6 +1,6 @@
 // CUSTOM SELECT BOX
 const selected = document.querySelector(".selected");
-const optionsContainer = document.querySelector(".options-container")
+const optionsContainer = document.querySelector(".options-container");
 
 const optionsList = document.querySelectorAll(".option");
 

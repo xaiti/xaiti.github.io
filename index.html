@@ -25,9 +25,12 @@
     </header>
     <main>
         <div class="content-container">
-
+            
+            <!---------->
+            <!-- INFO -->
+            <!---------->
             <div class="info-container">
-                <span class="titles">INFO</span>
+                <span class="title">INFO</span>
                 
                 <!-- SHOW MORE DECIMAL PLACES -->
                 <label class="button-container" onclick="calculate()">Show More Decimal Places
@@ -39,7 +42,6 @@
                     <input type="checkbox" value="" id="cc" onclick="ccFunc()">
                     <span class="checkmark"></span>
                 </label>
-                
                 <!-- SCALE SENSITIVITY BY FOV -->
                 <label class="button-container">Scale Sensitivity By FOV
                     <input type="checkbox" value="" id="ss" onclick="ssFunc()">
@@ -50,14 +52,24 @@
                     <input id="con-cm" type="checkbox" value="" onclick="conCmFunc()">
                     <span class="checkmark"></span>
                 </label>
+
+                <!--------------->
+                <!-- GAME INFO -->
+                <!--------------->
+                <!-- <div class="game-info-container">
+                    <div class="overwatch-info">
+                        <span class="game-title">Overwatch</span>
+                        <span class="game-info">Totally useful information about Overwatch</span>
+                    </div>
+                </div> -->
             </div>
+            
 
             <!----------->
             <!-- INPUT -->
             <!----------->
             <div class="input-container">
-                    
-                    <span class="titles">INPUT</span>
+                    <span class="title">INPUT</span>
                     <form>
                         <!-- CONVERT SENSITIVITY FROM EACH GAME -->
                         <div class="select-container" onclick="zoomSensFunc()">
@@ -220,26 +232,29 @@
                 <!------------>
                 <div class="output-container">
                     
-                    <span class="titles">OUTPUT</span>
+                    <span class="title">OUTPUT</span>
                     <div>
                     <!-- SENSITIVITY OVERVIEW -->
                     <table id="sensitivity-overview">
                         <thead>
                             <tr>
-                                <th colspan="3">Sensitivity Overview</th>
+                                <th colspan="4">Sensitivity Overview</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td id="sens-range-title" class="default-range" class="coefficient-range" class="focal-length-range" class="overwatch-range"></td>
-                                <td>Sensitivity</td>
-                                <td>cm/360</td>
+                                <td class="secondary-table-header">Aim</td>
+                                <td class="secondary-table-header">Sensitivity</td>
+                                <td class="secondary-table-header">cm/360</td>
+                                <td class="secondary-table-header default-range coefficient-range focal-length-range overwatch-range" id="sens-range-title"></td>
                             </tr>
                             <tr>
-                                <td id="sens-range">#</td>
+                                <td id="aim-output">Hipfire</td>
                                 <td id="sens-output">#</td>
                                 <td id="cm-output">#</td>
+                                <td id="sens-range">#</td>
                             </tr>
+                            <!-- coe rows -->
                             <tr id="pos-coefficient-row" style="display: none;">
                                 <td id="pos-co-title">Positive</td>
                                 <td id="pos-co-sens">#</td>
@@ -251,15 +266,17 @@
                                 <td id="neg-co-cm">#</td>
                             </tr>
                             <!-- OVERWATCH ROWS -->
-                            <tr id="overwatch-widow-row">
-                                <td id="widow-coefficient">Raw Widow/Ana Sensitivity</td>
-                                <td id="widow-sens-output">#</td>
-                                <td id="widow-cm-output">#</td>
-                            </tr>
                             <tr id="overwatch-ashe-row">
-                                <td id="ashe-coefficient">Raw Ashe Sensitivity</td>
+                                <td>Ashe</td>
                                 <td id="ashe-sens-output">#</td>
                                 <td id="ashe-cm-output">#</td>
+                                <td id="ashe-coefficient">Raw Ashe Sensitivity</td>
+                            </tr>
+                            <tr id="overwatch-widow-row">
+                                <td>Widow/Ana</td>
+                                <td id="widow-sens-output">#</td>
+                                <td id="widow-cm-output">#</td>
+                                <td id="widow-coefficient">Raw Widow/Ana Sensitivity</td>
                             </tr>
                         </tbody>
                     </table>

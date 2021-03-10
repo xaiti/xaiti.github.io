@@ -7,7 +7,21 @@
     --background-color: #28313b;
     --background-color-light: #485461;
     --background-color-center: #38434E;
+    --background-color-light-center: #3E4A56;
+    --bg-color-1: #28313B;
+    --bg-color-2: #2B343E;
+    --bg-color-3: #2E3742;
+    --bg-color-4: #313B45;
+    --bg-color-5: #343E49;
+    --bg-color-6: #37414C;
+    --bg-color-7: #394450;
+    --bg-color-8: #3C4753;
+    --bg-color-9: #3F4A57;
+    --bg-color-10: #424E5A;
+    --bg-color-11: #45515E;
+    --bg-color-12: #485461;
     --text-color: #8e9297;
+    --text-color-blend: #545E6A;
     --dark-color: #202225;
     --less-dark-color: #292b2f;
 }
@@ -19,11 +33,11 @@ body {
     font-family: 'Roboto Condensed';    
     font-size: 16px;
 }
-/* 
-    HEADER
-*/
+/* -------------- */
+/* --- HEADER --- */
+/* -------------- */
 header {
-    background: linear-gradient(to right, var(--background-color-center) 0%, var(--background-color) 100%);
+    background: linear-gradient(to right, var(--bg-color-7) 0%, var(--bg-color-1) 100%);
     width: 100%;
     min-height: 75px;
     padding: 5px;
@@ -64,7 +78,7 @@ header {
     /* display: grid;
     grid-template-columns: minmax(306px, 25%) 1fr 1fr; */
     min-height: 100vh;
-    background: linear-gradient(to bottom, var(--background-color), var(--background-color-center));
+    background: linear-gradient(to bottom, var(--bg-color-1), var(--bg-color-7));
 }
 
 /* ---- */
@@ -112,11 +126,20 @@ header {
 }
 
 /* TITLES */
-.titles {
+.title {
     display: grid;
-    /* place-items: center; */
     margin-bottom: 16px;
     font-size: 32px;
+}
+.game-title {
+    display: grid;
+    font-size: 32px;
+    color: var(--text-color-blend);
+}
+/* game info text */
+.game-info {
+    font-style: oblique;
+    color: var(--text-color-blend);
 }
 
 /* SETTING TOP MARGINS */
@@ -437,6 +460,9 @@ td {
     padding: 8px;
 }
 tr:nth-child(odd){background: rgba(0, 0, 0, 0.10)}
+.secondary-table-header {
+    font-weight: bold;
+}
 
 .default-range:after {
     content: 'Range';
