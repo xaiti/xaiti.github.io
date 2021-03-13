@@ -459,22 +459,15 @@ td {
     text-align: left;
     padding: 8px;
 }
-tr:nth-child(odd){background: rgba(0, 0, 0, 0.10)}
-.secondary-table-header {
-    font-weight: bold;
+.hidden-row {
+    display: none;
+}
+.tr:not(.hidden-row):nth-child(odd) {
+    background: rgba(0, 0, 0, 0.10)
 }
 
-.default-range:after {
-    content: 'Range';
-}
-.coefficient-range:after {
-    content: 'Coefficient';
-}
-.focal-length-range::after {
-    content: 'Scaled by Focal Length';
-}
-.overwatch-range:after {
-    content: 'Range/Zoom Coefficient';
+.secondary-table-header {
+    font-weight: bold;
 }
 
 /* ------------------------ */

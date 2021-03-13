@@ -12,27 +12,21 @@ optionsList.forEach( o => {
     o.addEventListener("click", () => {
         selected.innerHTML = o.querySelector("label").innerHTML;
         optionsContainer.classList.remove("active");
-
-        console.log(selected.innerHTML);
     });
 });
 
 // GAME SPECIFIC OPTIONS
 function zoomSensFunc() {
   // overwatch
-  document.querySelector('.overwatch-zoom-container').style.display =
-  selected.textContent.includes('Overwatch') ? '' : 'none';
-  document.querySelector('#overwatch-widow-row').style.display =
-  selected.textContent.includes('Overwatch') ? '' : 'none';
-  document.querySelector('#overwatch-ashe-row').style.display =
-  selected.textContent.includes('Overwatch') ? '' : 'none';
-  document.getElementById("sens-range-title").className = 
-  selected.textContent.includes('Overwatch') ? "overwatch-range" : 'default-range';
-  // document.getElementById('sens-range-title').innerHTML =
-  // selected.textContent.includes('Overwatch') ? 'Range/Zoom Coefficient' : 'Range';
+  var overwatchContent = document.querySelectorAll('.overwatch-content');
+  for (var i = 0; i < overwatchContent.length; i++ ) {
+    overwatchContent[i].style.display = selected.textContent.includes('Overwatch') ? '' : 'none';
+  }
   // csgo
-  document.querySelector('.cs-zoom-container').style.display =
-  selected.textContent.includes('CS:GO') ? '' : 'none';
+  var csgoContent = document.querySelectorAll('.csgo-content');
+  for (var i = 0; i < csgoContent.length; i++ ) {
+    csgoContent[i].style.display = selected.textContent.includes('CS:GO') ? '' : 'none';
+  }
   // apex
   document.querySelector('.apex-zoom-container').style.display =
   selected.textContent.includes('Apex Legends') ? '' : 'none';
@@ -48,7 +42,7 @@ function randomSensFunc() {
   const icm      = document.getElementById('icm');
   const sens     = document.getElementById('sens');
   const dpi      = $('#dpi').val() || '800';
-  const rbs    = document.querySelectorAll('input[name="game"]');
+  const rbs      = document.querySelectorAll('input[name="game"]');
   let yaw; for (const rb of rbs) {if (rb.checked) {yaw = rb.value;break;}}
   $('#overwatch').val('0.0066');$('#apex').val('0.022');$('#cs').val('0.022');
   $('#valorant').val('0.07');$('#fortnite').val('0.005555');$('#quake').val('0.022');
@@ -73,91 +67,45 @@ function randomSensFunc() {
 
   icm.value  = random.toFixed(mDecimal.checked ? 5 : 2);
   sens.value = (2.54 * 360 / (random * yaw * dpi)).toFixed(mDecimal.checked ? 5 : 2);
-  console.log(random, icm.value, sens.value)
 }
 
 // RANDOM COEFFICIENT FUNCTION
-function randomCoFunc() {
-  var co = document.getElementById('coefficient');
-
+function randomCoefficientFunc() {
   var generate = Math.random() * 100;
   var low      = Math.random() * (1.06 - 1.01) + 1.01;
   var medium   = Math.random() * (1.15 - 1.07) + 1.075;
   var high     = Math.random() * (1.25 - 1.16) + 1.15;
   var random   = generate < 60 ? medium : generate < 80 ? low : high;
 
-  co.value = Number(random).toFixed(2);
+  document.getElementById('coefficient').value = Number(random).toFixed(2);
 }
 
 // CONVERT FROM CM360 FUNCTION
-function conCmFunc() {
-  var conCm = document.getElementById("con-cm");
-  var icmContainer = document.getElementById("icm-container");
-  var sensContainer = document.getElementById("sens-container");
-
-  if (conCm.checked){
-    sensContainer.style.display = "none";
-    icmContainer.style.display = "";
-  } else {
-    sensContainer.style.display = "";
-    icmContainer.style.display = "none";
-  }
+function convertCmFunc() {
+  const conCm = document.getElementById('con-cm');
+  document.getElementById('icm-container').style.display = conCm.checked ? '' : 'none';
+  document.getElementById('sens-container').style.display = conCm.checked ? 'none' : '';
 }
+
 // SCALE SENSITIVITY FUNCTION
 function ssFunc() {
-  var ss = document.getElementById("ss");
-  var cc = document.getElementById("cc")
-  var sensRangeTitle = document.getElementById("sens-range-title");
-  var newFovContainer = document.getElementById("new-fov-container");
-  var newFovTr = document.getElementById("new-fov-tr");
-  var fovInput = document.getElementById('fov-input');
-  var fovTableHead = document.getElementById("fov-table-head");
-  var fovInputFov = document.getElementById("fov-input-fov");
-  
-  if (ss.checked){
-    sensRangeTitle.className = "focal-length-range";
-    newFovContainer.style.display = "";
-    newFovTr.style.display = "";
-    fovInput.style.display = '';
-    fovInputFov.style.display = "";
-    fovTableHead.colSpan = "4";
-    document.getElementById("cc").disabled = true;
-  } else {
-    sensRangeTitle.className = 'default-range';
-    newFovContainer.style.display = "none";
-    newFovTr.style.display = "none";
-    fovInput.style.display = 'none';
-    fovInputFov.style.display = "none";
-    fovTableHead.colSpan = "3";
-    document.getElementById("cc").disabled = false;
-  }
+  document.querySelectorAll('.scale-sensitivity-content').forEach(x => {
+	  x.style.display = document.getElementById('ss').checked ? '' : 'none';
+    document.getElementById('fov-table-head').colSpan = document.getElementById('ss').checked ? '4' : '3';
+    // fixing table styling
+    // document.getElementById('cc').checked ?
+    // ''
+    // : document.getElementById('coefficient-row').classList.toggle('table-row');
+	});
 }
 
 // COEFFICIENT FUNCTION
 function ccFunc() {
-  var cc         = document.getElementById('cc');
-  var cContainer = document.getElementById('coefficient-container');
-  var ranCoCont  = document.getElementById('random-co-container');
-  var title      = document.getElementById('sens-range-title');
-  var posCoRow   = document.getElementById('pos-coefficient-row');
-  var negCoRow   = document.getElementById('neg-coefficient-row');
+  var coefficientContent = document.querySelectorAll('.coefficient-content');
+  for (var i = 0; i < coefficientContent.length; i++ ) {
+    coefficientContent[i].style.display = document.getElementById('cc').checked ? '' : 'none';
+    // fixing table styling
 
-  if (cc.checked) {
-    title.className += ' coefficient-range';
-    posCoRow.style.display = '';
-    negCoRow.style.display = '';
-    cContainer.style.display = '';
-    ranCoCont.style.display = '';
-    document.getElementById('ss').disabled = true;
-  } else {
-    title.className =
-      title.className.replace
-        ( /(?:^|\s)'coefficient-range'(?!\S)/g , '' );
-    posCoRow.style.display = 'none';
-    negCoRow.style.display = 'none';
-    cContainer.style.display = 'none';
-    ranCoCont.style.display = 'none';
-    document.getElementById('ss').disabled = false;
   }
 }
 
@@ -188,7 +136,6 @@ var sens     = $('#sens').val() || '6';
 var icm      = $('#icm').val() || '30';
 var fov      = $('#fov').val() || '103';
 var newFov   = $('#new-fov').val() || '113';
-var co       = $('#coefficient').val() || '1.1';
 var mDecimal = document.getElementById('mDecimal');
 var conCm    = document.getElementById('con-cm');
 var ss       = document.getElementById('ss');
@@ -201,8 +148,8 @@ var sensOutput = document.getElementById("sens-output");
 var cmOutput = document.getElementById("cm-output");
 var posCoSensOutput = document.getElementById("pos-co-sens");
 var posCoCmOutput = document.getElementById("pos-co-cm");
-var negCoSensOutput = document.getElementById("neg-co-sens");
-var negCoCmOutput = document.getElementById("neg-co-cm");
+// var negCoSensOutput = document.getElementById("neg-co-sens");
+// var negCoCmOutput = document.getElementById("neg-co-cm");
 
 var owSens = document.getElementById("ow-sens");
 var quakeSens = document.getElementById("quake-sens");
@@ -254,7 +201,7 @@ var range = cm360 == 92 ?
 : cm360 == 1.33 ?
  'God sens'
 : cm360 == 0.3 ?
- 'Nonce sens'
+ 'Nonce'
 : 'Retard sens';
 
 /*
@@ -282,14 +229,74 @@ const newOto = ((360 * atan(1/(fovType) * tan((newFov) * pi/360)))/pi).toFixed(m
 /*
   Scaling Sensitivity
 */
-var magnification = (sens / ((tan((fov) * pi/360) / tan((newFov) * pi/360)))).toFixed(mDecimal.checked ? 5 : 2);
-//how to scale horrizontally = (newsbn / 2) / (sbn / 2) * sens
+var scaledSens  = (sens / ((tan((fov) * pi/360) / tan((newFov) * pi/360)))).toFixed(mDecimal.checked ? 5 : 2);
+var scaledCm    = (2.54 * 360 / (scaledSens * yaw * dpi)).toFixed(mDecimal.checked ? 5 : 2);
+var scaledRange = scaledCm == 92 ?
+'Certified accel user'
+: scaledCm > 50 ?
+'Retard sens'
+: scaledCm >= 45 ?
+'Cringe snoozer'
+: scaledCm >= 40 ?
+'Very low'
+: scaledCm > 35 ? 
+'Low'
+: scaledCm > 32 ?
+'Mid-low'
+: scaledCm >= 28 ?
+'Mid'
+: scaledCm >= 25 ?
+'Mid-high'
+: scaledCm == 23.09 || ow == 7.5 && dpi == 800 ?
+'шпион'
+: scaledCm >= 20 ? 
+'High'
+: scaledCm >= 15 ? 
+'Very high'
+: scaledCm >= 12 ?
+'Zoomin'
+: scaledCm == 1.33 ?
+'God sens'
+: scaledCm == 0.3 ?
+'Nonce'
+: 'Retard sens';
 
-// Coefficients
-var posCoSens = (sens * co).toFixed(mDecimal.checked ? 5 : 2);
-var posCoCm   = (cm360 / co).toFixed(mDecimal.checked ? 5 : 2);
-var negCoSens = (sens / co).toFixed(mDecimal.checked ? 5 : 2);
-var negCoCm   = (cm360 * co).toFixed(mDecimal.checked ? 5 : 2);
+
+
+
+// Coefficient
+var coefficient       = $('#coefficient').val() || '1.1';
+var coefficientSens   = (sens * coefficient).toFixed(mDecimal.checked ? 5 : 2);
+var coefficientCm     = (cm360 / coefficient).toFixed(mDecimal.checked ? 5 : 2);
+var coefficientRange  =  coefficientCm == 92 ?
+'Certified accel user'
+: coefficientCm > 50 ?
+'Retard sens'
+: coefficientCm >= 45 ?
+'Cringe snoozer'
+: coefficientCm >= 40 ?
+'Very low'
+: coefficientCm > 35 ? 
+'Low'
+: coefficientCm > 32 ?
+'Mid-low'
+: coefficientCm >= 28 ?
+'Mid'
+: coefficientCm >= 25 ?
+'Mid-high'
+: coefficientCm == 23.09 || ow == 7.5 && dpi == 800 ?
+'шпион'
+: coefficientCm >= 20 ? 
+'High'
+: coefficientCm >= 15 ? 
+'Very high'
+: coefficientCm >= 12 ?
+'Zoomin'
+: coefficientCm == 1.33 ?
+'God sens'
+: coefficientCm == 0.3 ?
+'Nonce'
+: 'Retard sens';
 
 // Overwatch Settings
 const widowZoom = $('#overwatch-widow-input').val() || '37.89';
@@ -331,17 +338,17 @@ const apex10xOutput = (sens / ((tan((fbt) * pi/360) / tan((apex10xFov) * pi/360)
 // table outputs //
 //---------------//
 // Sensitivity Overview
-sensRange.innerHTML = ss.checked ?
- magnification
-: cc.checked ?
- 'None'
-:range;
 sensOutput.innerHTML = sens;
 cmOutput.innerHTML = cm360;
-posCoSensOutput.innerHTML = posCoSens;
-posCoCmOutput.innerHTML = posCoCm;
-negCoSensOutput.innerHTML = negCoSens;
-negCoCmOutput.innerHTML = negCoCm;
+document.getElementById('sens-range').innerHTML = range;
+// scaled sensitivity
+document.getElementById('scaled-sens').innerHTML = scaledSens;
+document.getElementById('scaled-cm').innerHTML = scaledCm;
+document.getElementById('scaled-range').innerHTML = scaledRange;
+// coefficient
+posCoSensOutput.innerHTML = coefficientSens;
+posCoCmOutput.innerHTML = coefficientCm;
+document.getElementById('coefficient-range').innerHTML = coefficientRange;
 
 // Sensitivity Converter
 owSens.innerHTML = ow;
