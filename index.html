@@ -244,15 +244,15 @@
                     <table id="sensitivity-overview">
                         <thead>
                             <tr>
-                                <th colspan="4">Sensitivity Overview</th>
+                                <th class="primary-table-header" colspan="4">Sensitivity Overview</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr class="table-row">
-                                <td class="secondary-table-header">Aim</td>
-                                <td class="secondary-table-header">Raw Sensitivity</td>
-                                <td class="secondary-table-header">cm/360</td>
-                                <td class="secondary-table-header" id="sens-range-title">Range/Zoom Coefficient</td>
+                                <th>Aim</th>
+                                <th>Raw Sensitivity</th>
+                                <th>cm/360</th>
+                                <th id="sens-range-title">Range/Zoom Coefficient</th>
                             </tr>
                             <tr class="table-row">
                                 <td id="aim-output">Hipfire</td>
@@ -261,17 +261,17 @@
                                 <td id="sens-range">#</td>
                             </tr>
                             <!-- FOCAL LENGTH ROW -->
-                            <tr id="scaled-sens-row" class="hidden-row scale-sensitivity-content">
+                            <tr id="scaled-sens-row" class="table-row hidden-row scale-sensitivity-content">
                                 <td>Scaled by FOV</td>
                                 <td id="scaled-sens"></td>
                                 <td id="scaled-cm"></td>
                                 <td id="scaled-range"></td>
                             </tr>
                             <!-- COEFFICIENT ROW -->
-                            <tr id="coefficient-row" class="hidden-row coefficient-content">
+                            <tr id="coefficient-row" class="table-row hidden-row coefficient-content">
                                 <td>Hipfire Coefficient</td>
-                                <td id="pos-co-sens">#</td>
-                                <td id="pos-co-cm">#</td>
+                                <td id="coefficient-sens"></td>
+                                <td id="coefficient-cm"></td>
                                 <td id="coefficient-range"></td>
                             </tr>
                             <!-- <tr id="neg-coefficient-row" style="display: none;">
@@ -295,7 +295,7 @@
                         </tbody>
                     </table>
                     <!-- APEX TABLE -->
-                    <table class="apex-table">
+                    <table class="primary-table-header apex-table">
                         <thead>
                             <tr>
                                 <th colspan="4">Apex Overview</th>
@@ -304,9 +304,9 @@
                         <tbody>
                             <tr>
                                 <td class="aim-type">Aim</td>
-                                <td class="secondary-table-header">Sensitivity</td>
-                                <td class="secondary-table-header">cm/360</td>
-                                <td class="secondary-table-header">FOV</td>
+                                <td>Sensitivity</td>
+                                <td>cm/360</td>
+                                <td>FOV</td>
                             </tr>
                             <tr id="hipfire">
                                 <td class="aim-type">Hipfire, RE-45</td>
@@ -370,14 +370,14 @@
                     <table>
                         <thead>
                             <tr>
-                                <th colspan="3">Sensitivity Converter</th>
+                                <th class="primary-table-header" colspan="3">Sensitivity Converter</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td class="secondary-table-header">Game</td>
-                                <td class="secondary-table-header">Sensitivity</td>
-                                <td class="secondary-table-header">Game's FOV</td>
+                                <th>Game</th>
+                                <th>Sensitivity</th>
+                                <th>Game's FOV</th>
                             </tr>
                             <tr>
                                 <td>Overwatch</td>
@@ -405,15 +405,15 @@
                     <table>
                         <thead>
                             <tr>
-                                <th id="fov-table-head" colspan="3">FOV Converter</th>
+                                <th id="fov-table-head" class="primary-table-header" colspan="3">FOV Converter</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td id="fov-input-column" class="secondary-table-header scale-sensitivity-content" style="display: none;">Input</td>
-                                <td class="secondary-table-header">Horrizontal 16:9</td>
-                                <td class="secondary-table-header">Horrizontal 4:3</td>
-                                <td class="secondary-table-header">Vertical 1:1</td>
+                                <th id="fov-input-column" class="scale-sensitivity-content" style="display: none;">Input</th>
+                                <th>Horrizontal 16:9</th>
+                                <th>Horrizontal 4:3</th>
+                                <th>Vertical 1:1</th>
                             </tr>
                             <tr>
                                 <td id="fov-input-fov" style="display: none;" class="scale-sensitivity-content">FOV</td>

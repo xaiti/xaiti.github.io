@@ -90,12 +90,20 @@ function convertCmFunc() {
 // SCALE SENSITIVITY FUNCTION
 function ssFunc() {
   document.querySelectorAll('.scale-sensitivity-content').forEach(x => {
-	  x.style.display = document.getElementById('ss').checked ? '' : 'none';
     document.getElementById('fov-table-head').colSpan = document.getElementById('ss').checked ? '4' : '3';
-    // fixing table styling
-    // document.getElementById('cc').checked ?
-    // ''
-    // : document.getElementById('coefficient-row').classList.toggle('table-row');
+	  x.detach = document.getElementById('ss').checked ? '' : 'none';
+    if(document.getElementById('ss').checked){
+      $('#coefficient-row').detach();
+    } else {
+      $('#coefficient-row').appendTo('body');
+    }
+    // var p;
+    // if ( p ) {
+    // p.appendTo( "body" );
+    // p = null;
+    // } else {
+    // p = $( "coefficient-row" ).detach();
+    // }
 	});
 }
 
@@ -104,8 +112,6 @@ function ccFunc() {
   var coefficientContent = document.querySelectorAll('.coefficient-content');
   for (var i = 0; i < coefficientContent.length; i++ ) {
     coefficientContent[i].style.display = document.getElementById('cc').checked ? '' : 'none';
-    // fixing table styling
-
   }
 }
 
@@ -146,10 +152,6 @@ var cm360    = conCm.checked ? Number(icm).toFixed(mDecimal.checked ? 5 : 2) : (
 var sensRange = document.getElementById("sens-range");
 var sensOutput = document.getElementById("sens-output");
 var cmOutput = document.getElementById("cm-output");
-var posCoSensOutput = document.getElementById("pos-co-sens");
-var posCoCmOutput = document.getElementById("pos-co-cm");
-// var negCoSensOutput = document.getElementById("neg-co-sens");
-// var negCoCmOutput = document.getElementById("neg-co-cm");
 
 var owSens = document.getElementById("ow-sens");
 var quakeSens = document.getElementById("quake-sens");
@@ -346,9 +348,10 @@ document.getElementById('scaled-sens').innerHTML = scaledSens;
 document.getElementById('scaled-cm').innerHTML = scaledCm;
 document.getElementById('scaled-range').innerHTML = scaledRange;
 // coefficient
-posCoSensOutput.innerHTML = coefficientSens;
-posCoCmOutput.innerHTML = coefficientCm;
+document.getElementById('coefficient-sens').innerHTML = coefficientSens;
+document.getElementById('coefficient-cm').innerHTML = coefficientCm;
 document.getElementById('coefficient-range').innerHTML = coefficientRange;
+console.log(document.getElementById('coefficient-sens').innerHTML);
 
 // Sensitivity Converter
 owSens.innerHTML = ow;

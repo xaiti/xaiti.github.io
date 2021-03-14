@@ -450,25 +450,24 @@ table {
     border: 1px solid #28313b;
     margin-bottom: 1em;
 }
+.primary-table-header {
+    background: rgba(0, 0, 0, 0.150);
+}
 th {
     text-align: left;
     padding: 8px;
-    background: rgba(0, 0, 0, 0.150);
 }
 td {
     text-align: left;
     padding: 8px;
 }
-.hidden-row {
-    display: none;
-}
-.tr:not(.hidden-row):nth-child(odd) {
-    background: rgba(0, 0, 0, 0.10)
+tr:nth-child(odd) {
+    background: rgba(0, 0, 0, 0.10);
 }
 
-.secondary-table-header {
+/* .secondary-table-header {
     font-weight: bold;
-}
+} */
 
 /* ------------------------ */
 /* --- TOOL TIP STYLING --- */
