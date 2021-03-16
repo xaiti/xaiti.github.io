@@ -16,7 +16,7 @@
     <title>Xaiti's Sens Calc</title>
 </head>
 
-<body onload="calculate(); zoomSensFunc(); convertCmFunc(); ssFunc(); ccFunc()" onclick="calculate()" onkeyup="calculate()">
+<body onload="calculate(); zoomSensFunc(); convertCmFunc();" onclick="calculate()" onkeyup="calculate()">
     <header><a id="a"><img class="logo" src="https://media.discordapp.net/attachments/464469303928815616/815324426820124762/xaiti-sunny3.png?width=810&height=810" alt="logo"></a>
         <div id="head">
             <span id="main-title">Xaiti Sens Calc</span>
@@ -141,7 +141,7 @@
                         </div>
 
                         <!-- COEFFICIENT INPUT -->
-                        <div class="coefficient-content">
+                        <div id="coefficient-container" class="coefficient-content">
                             <label for="coefficient">Coefficient:</label>
                             <div class="inner-container">
                                 <input id="coefficient" class="number-input" type="number" step="any" placeholder="1.1">
@@ -247,46 +247,46 @@
                                 <th class="primary-table-header" colspan="4">Sensitivity Overview</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="table-body">
                             <tr class="table-row">
                                 <th>Aim</th>
                                 <th>Raw Sensitivity</th>
                                 <th>cm/360</th>
                                 <th id="sens-range-title">Range/Zoom Coefficient</th>
                             </tr>
-                            <tr class="table-row">
+                            <tr>
                                 <td id="aim-output">Hipfire</td>
                                 <td id="sens-output">#</td>
                                 <td id="cm-output">#</td>
                                 <td id="sens-range">#</td>
                             </tr>
                             <!-- FOCAL LENGTH ROW -->
-                            <tr id="scaled-sens-row" class="table-row hidden-row scale-sensitivity-content">
+                            <!-- <tr id="scaled-sens-row" class="hidden-row scale-sensitivity-content">
                                 <td>Scaled by FOV</td>
                                 <td id="scaled-sens"></td>
                                 <td id="scaled-cm"></td>
                                 <td id="scaled-range"></td>
-                            </tr>
+                            </tr> -->
                             <!-- COEFFICIENT ROW -->
-                            <tr id="coefficient-row" class="table-row hidden-row coefficient-content">
+                            <!-- <tr id="coefficient-row" class="hidden-row coefficient-content">
                                 <td>Hipfire Coefficient</td>
                                 <td id="coefficient-sens"></td>
                                 <td id="coefficient-cm"></td>
                                 <td id="coefficient-range"></td>
-                            </tr>
+                            </tr> -->
                             <!-- <tr id="neg-coefficient-row" style="display: none;">
                                 <td id="neg-co-title">Negative</td>
                                 <td id="neg-co-sens">#</td>
                                 <td id="neg-co-cm">#</td>
                             </tr> -->
                             <!-- OVERWATCH ROWS -->
-                            <tr id="overwatch-ashe-row" class="table-row overwatch-content">
+                            <tr id="overwatch-ashe-row" class="overwatch-content">
                                 <td>Ashe</td>
                                 <td id="ashe-sens-output">#</td>
                                 <td id="ashe-cm-output">#</td>
                                 <td id="ashe-coefficient">Raw Ashe Sensitivity</td>
                             </tr>
-                            <tr id="overwatch-widow-row" class="table-row overwatch-content">
+                            <tr id="overwatch-widow-row" class="overwatch-content">
                                 <td>Widow/Ana</td>
                                 <td id="widow-sens-output">#</td>
                                 <td id="widow-cm-output">#</td>

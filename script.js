@@ -87,33 +87,40 @@ function convertCmFunc() {
   document.getElementById('sens-container').style.display = conCm.checked ? 'none' : '';
 }
 
-// SCALE SENSITIVITY FUNCTION
+// -------------------------- //
+// SCALE SENSITIVITY FUNCTION //
+// -------------------------- //
 function ssFunc() {
   document.querySelectorAll('.scale-sensitivity-content').forEach(x => {
     document.getElementById('fov-table-head').colSpan = document.getElementById('ss').checked ? '4' : '3';
-	  x.detach = document.getElementById('ss').checked ? '' : 'none';
-    if(document.getElementById('ss').checked){
-      $('#coefficient-row').detach();
-    } else {
-      $('#coefficient-row').appendTo('body');
-    }
-    // var p;
-    // if ( p ) {
-    // p.appendTo( "body" );
-    // p = null;
-    // } else {
-    // p = $( "coefficient-row" ).detach();
-    // }
-	});
-}
+    x.style.display = document.getElementById('ss').checked ? '' : 'none'
+  });
+  var ssRow = '<tr id="scaled-sens-row" class="hidden-row scale-sensitivity-content"><td>Scaled by FOV</td><td id="scaled-sens"></td><td id="scaled-cm"></td><td id="scaled-range"></td></tr>'
+    if($('#ss').is(':checked')){
+      $('#sensitivity-overview > tbody > tr').eq(1).after(ssRow);
+      console.log('ss if');
+    }else{
+      $('#scaled-sens-row').remove();
+      console.log('ss else');
+    };
+}$().ready(ssFunc);
 
-// COEFFICIENT FUNCTION
+
+// -------------------- //
+// COEFFICIENT FUNCTION //
+// -------------------- //
 function ccFunc() {
-  var coefficientContent = document.querySelectorAll('.coefficient-content');
-  for (var i = 0; i < coefficientContent.length; i++ ) {
-    coefficientContent[i].style.display = document.getElementById('cc').checked ? '' : 'none';
-  }
-}
+  $('#coefficient-container').css('display', $('#cc').is(':checked') ? '' : 'none');
+
+  var ccRow = "<tr id='coefficient-row' class='coefficient-content'><td>Hipfire Coefficient</td><td id='coefficient-sens'>sens</td><td id='coefficient-cm'>cm</td><td id='coefficient-range'>range</td></tr>"
+    if($('#cc').is(':checked')){
+      $('#sensitivity-overview > tbody > tr').eq(1).after(ccRow);
+      console.log('cc if');
+    }else{
+      $('#coefficient-row').remove();
+      console.log('cc else');
+    };
+}$().ready(ccFunc);
 
 function calculate() {
 // math //
@@ -344,15 +351,19 @@ sensOutput.innerHTML = sens;
 cmOutput.innerHTML = cm360;
 document.getElementById('sens-range').innerHTML = range;
 // scaled sensitivity
+if($('#ss').is(':checked')){
 document.getElementById('scaled-sens').innerHTML = scaledSens;
 document.getElementById('scaled-cm').innerHTML = scaledCm;
 document.getElementById('scaled-range').innerHTML = scaledRange;
+};
+
 // coefficient
+if($('#cc').is(':checked')){
 document.getElementById('coefficient-sens').innerHTML = coefficientSens;
 document.getElementById('coefficient-cm').innerHTML = coefficientCm;
 document.getElementById('coefficient-range').innerHTML = coefficientRange;
 console.log(document.getElementById('coefficient-sens').innerHTML);
-
+};
 // Sensitivity Converter
 owSens.innerHTML = ow;
 quakeSens.innerHTML = quake;
@@ -461,3 +472,10 @@ const sensTable = [
     fovC    : 'Vertical 1:1',
   },
 ]; */
+
+// Uncheck all checkboxes on refresh
+$().ready(function() {
+  $('input[type="checkbox"]').each(function(){
+  $(this).prop('checked', false);
+  });
+});
