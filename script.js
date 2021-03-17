@@ -26,10 +26,13 @@ function gameSpecificFunc() {
     $(this).css('display', selected.textContent.includes('Overwatch') ? '' : 'none');
   });
   const asheRow = '<tr id="overwatch-ashe-row" class="overwatch-content"><td>Ashe</td><td id="ashe-sens-output"></td><td id="ashe-cm-output"></td><td id="ashe-coefficient"></td></tr>'
+  const widowRow = '<tr id="overwatch-widow-row" class="overwatch-content"><td>Widow/Ana</td><td id="widow-sens-output"></td><td id="widow-cm-output"></td><td id="widow-coefficient"></td></tr>'
   if(selected.textContent.includes('Overwatch')){
     $('#sensitivity-overview').append(asheRow);
+    $('#sensitivity-overview').append(widowRow);
   }else{
     $('#overwatch-ashe-row').remove();
+    $('#overwatch-widow-row').remove();
   };
   
   // csgo

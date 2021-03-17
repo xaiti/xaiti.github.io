@@ -16,7 +16,7 @@
     <title>Xaiti's Sens Calc</title>
 </head>
 
-<body onclick="calculate()" onkeyup="calculate()">
+<body onchange="calculate()" onkeyup="calculate()">
     <header><a id="a"><img class="logo" src="https://media.discordapp.net/attachments/464469303928815616/815324426820124762/xaiti-sunny3.png?width=810&height=810" alt="logo"></a>
         <div id="head">
             <span id="main-title">Xaiti Sens Calc</span>
@@ -103,8 +103,8 @@
                         <!-- CONVERT SENSITIVITY FROM EACH GAME -->
                         <div class="select-container">
                             <span>Convert Sensitivty From:</span>
-                            <div class="select-box">
-                                <div class="options-container" onclick="gameSpecificFunc()">
+                            <div class="select-box" onchange="gameSpecificFunc()">
+                                <div class="options-container">
                                     <div class="option">
                                         <input type="radio" name="game" class="radio" id="overwatch" value="overwatch" checked>
                                         <label for="overwatch">Overwatch</label>
@@ -312,12 +312,12 @@
                                 <td id="ashe-cm-output"></td>
                                 <td id="ashe-coefficient"></td>
                             </tr> -->
-                            <tr id="overwatch-widow-row" class="overwatch-content">
+                            <!-- <tr id="overwatch-widow-row" class="overwatch-content">
                                 <td>Widow/Ana</td>
                                 <td id="widow-sens-output"></td>
                                 <td id="widow-cm-output"></td>
                                 <td id="widow-coefficient"></td>
-                            </tr>
+                            </tr> -->
                         </tbody>
                     </table>
                     <!-- APEX TABLE -->
