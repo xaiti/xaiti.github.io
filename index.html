@@ -16,7 +16,7 @@
     <title>Xaiti's Sens Calc</title>
 </head>
 
-<body onload="calculate(); zoomSensFunc(); convertCmFunc();" onclick="calculate()" onkeyup="calculate()">
+<body onclick="calculate()" onkeyup="calculate()">
     <header><a id="a"><img class="logo" src="https://media.discordapp.net/attachments/464469303928815616/815324426820124762/xaiti-sunny3.png?width=810&height=810" alt="logo"></a>
         <div id="head">
             <span id="main-title">Xaiti Sens Calc</span>
@@ -33,8 +33,8 @@
                 <span class="title">INFO</span>
                 
                 <!-- SHOW MORE DECIMAL PLACES -->
-                <label class="button-container" onclick="calculate()">Show More Decimal Places
-                    <input id="mDecimal" type="checkbox" value="">
+                <label class="button-container">Show More Decimal Places
+                    <input id="more-decimals" type="checkbox" value="">
                     <span class="checkmark"></span>
                 </label>
                 <!-- SCALE SENSITIVITY BY FOCAL LENGTH -->
@@ -49,17 +49,46 @@
                 </label>
                 <!-- CONVERT SENSITIVITY FROM CM/360 -->
                 <label class="button-container" onclick="calculate()">Convert Sensitivity From cm/360
-                    <input id="con-cm" type="checkbox" value="" onclick="convertCmFunc()">
+                    <input id="convert-by-cm" type="checkbox" value="" onclick="convertCmFunc()">
                     <span class="checkmark"></span>
                 </label>
 
                 <!--------------->
                 <!-- GAME INFO -->
                 <!--------------->
+                <!-- overwatch -->
                 <div class="game-info-container">
-                    <div class="overwatch-info">
+                    <div class="overwatch-content">
                         <span class="game-title">Overwatch</span>
                         <span class="game-info">Totally useful information about Overwatch</span>
+                    </div>
+                </div>
+                <!-- csgo -->
+                <div class="game-info-container">
+                    <div class="csgo-content">
+                        <span class="game-title">CS:GO</span>
+                        <span class="game-info">Totally useful information about CS:GO</span>
+                    </div>
+                </div>
+                <!-- apex -->
+                <div class="game-info-container">
+                    <div class="apex-content">
+                        <span class="game-title">Apex Legends</span>
+                        <span class="game-info">Totally useful information about Apex Legends</span>
+                    </div>
+                </div>
+                <!-- valorant -->
+                <div class="game-info-container">
+                    <div class="valorant-content">
+                        <span class="game-title">Valorant</span>
+                        <span class="game-info">Totally useful information about Valorant</span>
+                    </div>
+                </div>
+                <!-- fortnite -->
+                <div class="game-info-container">
+                    <div class="fortnite-content">
+                        <span class="game-title">Fortnite</span>
+                        <span class="game-info">Totally useful information about Fortnite</span>
                     </div>
                 </div>
             </div>
@@ -72,10 +101,10 @@
                     <span class="title">INPUT</span>
                     <form>
                         <!-- CONVERT SENSITIVITY FROM EACH GAME -->
-                        <div class="select-container" onclick="zoomSensFunc()">
+                        <div class="select-container">
                             <span>Convert Sensitivty From:</span>
                             <div class="select-box">
-                                <div class="options-container">
+                                <div class="options-container" onclick="gameSpecificFunc()">
                                     <div class="option">
                                         <input type="radio" name="game" class="radio" id="overwatch" value="overwatch" checked>
                                         <label for="overwatch">Overwatch</label>
@@ -84,17 +113,14 @@
                                         <input type="radio" name="game" class="radio" id="quake" value="quake">
                                         <label for="quake">CS:GO</label>
                                     </div>
-
                                     <div class="option">
                                         <input type="radio" name="game" class="radio" id="apex" value="apex">
                                         <label for="apex">Apex Legends</label>
                                     </div>
-                    
                                     <div class="option">
                                         <input type="radio" name="game" class="radio" id="valorant" value="valorant">
                                         <label for="valorant">Valorant</label>
                                     </div>
-                    
                                     <div class="option">
                                         <input type="radio" name="game" class="radio" id="fortnite" value="fortnite">
                                         <label for="fortnite">Fortnite</label>
@@ -171,7 +197,7 @@
                             <input class="number-input" type="number" id="cs-zoom-input" step="any" placeholder="0.82">
                         </div>
                         <!-- APEX ZOOM SENS -->
-                        <div class="apex-zoom-container">
+                        <div class="apex-content">
                         <div>
                             <label>1x Optic / Iron Sights:</label>
                             <input class="number-input" type="number" id="apex-1x-input" step="any" placeholder="1">
@@ -248,7 +274,7 @@
                             </tr>
                         </thead>
                         <tbody id="table-body">
-                            <tr class="table-row">
+                            <tr>
                                 <th>Aim</th>
                                 <th>Raw Sensitivity</th>
                                 <th>cm/360</th>
@@ -256,9 +282,9 @@
                             </tr>
                             <tr>
                                 <td id="aim-output">Hipfire</td>
-                                <td id="sens-output">#</td>
-                                <td id="cm-output">#</td>
-                                <td id="sens-range">#</td>
+                                <td id="sens-output"></td>
+                                <td id="cm-output"></td>
+                                <td id="sens-range"></td>
                             </tr>
                             <!-- FOCAL LENGTH ROW -->
                             <!-- <tr id="scaled-sens-row" class="hidden-row scale-sensitivity-content">
@@ -276,29 +302,29 @@
                             </tr> -->
                             <!-- <tr id="neg-coefficient-row" style="display: none;">
                                 <td id="neg-co-title">Negative</td>
-                                <td id="neg-co-sens">#</td>
-                                <td id="neg-co-cm">#</td>
+                                <td id="neg-co-sens"></td>
+                                <td id="neg-co-cm"></td>
                             </tr> -->
                             <!-- OVERWATCH ROWS -->
-                            <tr id="overwatch-ashe-row" class="overwatch-content">
+                            <!-- <tr id="overwatch-ashe-row" class="overwatch-content">
                                 <td>Ashe</td>
-                                <td id="ashe-sens-output">#</td>
-                                <td id="ashe-cm-output">#</td>
-                                <td id="ashe-coefficient">Raw Ashe Sensitivity</td>
-                            </tr>
+                                <td id="ashe-sens-output"></td>
+                                <td id="ashe-cm-output"></td>
+                                <td id="ashe-coefficient"></td>
+                            </tr> -->
                             <tr id="overwatch-widow-row" class="overwatch-content">
                                 <td>Widow/Ana</td>
-                                <td id="widow-sens-output">#</td>
-                                <td id="widow-cm-output">#</td>
-                                <td id="widow-coefficient">Raw Widow/Ana Sensitivity</td>
+                                <td id="widow-sens-output"></td>
+                                <td id="widow-cm-output"></td>
+                                <td id="widow-coefficient"></td>
                             </tr>
                         </tbody>
                     </table>
                     <!-- APEX TABLE -->
-                    <table class="primary-table-header apex-table">
+                    <table class="apex-content">
                         <thead>
                             <tr>
-                                <th colspan="4">Apex Overview</th>
+                                <th class="primary-table-header" colspan="4">Apex Overview</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -310,57 +336,57 @@
                             </tr>
                             <tr id="hipfire">
                                 <td class="aim-type">Hipfire, RE-45</td>
-                                <td id="hipfire-sens">#</td>
-                                <td id="hipfire-cm">#</td>
-                                <td id="hipfire-fov">#</td>
+                                <td id="hipfire-sens"></td>
+                                <td id="hipfire-cm"></td>
+                                <td id="hipfire-fov"></td>
                             </tr>
                             <tr id="1x">
                                 <td class="aim-type">1x Scope, Pistol, SMG, Shotgun</td>
-                                <td id="1x-sens">#</td>
-                                <td id="1x-cm">#</td>
-                                <td id="1x-fov">#</td>
+                                <td id="1x-sens"></td>
+                                <td id="1x-cm"></td>
+                                <td id="1x-fov"></td>
                             </tr>
                             <tr id="ar-lmg-sniper">
                                 <td class="aim-type">AR, LMG, Sniper</td>
-                                <td id="ar-sens">#</td>
-                                <td id="ar-cm">#</td>
-                                <td id="ar-fov">#</td>
+                                <td id="ar-sens"></td>
+                                <td id="ar-cm"></td>
+                                <td id="ar-fov"></td>
                             </tr>
                             <tr id="2x">
                                 <td class="aim-type">2x Scope</td>
-                                <td id="2x-sens">#</td>
-                                <td id="2x-cm">#</td>
-                                <td id="2x-fov">#</td>
+                                <td id="2x-sens"></td>
+                                <td id="2x-cm"></td>
+                                <td id="2x-fov"></td>
                             </tr>
                             <tr id="3x">
                                 <td class="aim-type">3x Scope</td>
-                                <td id="3x-sens">#</td>
-                                <td id="3x-cm">#</td>
-                                <td id="3x-fov">#</td>
+                                <td id="3x-sens"></td>
+                                <td id="3x-cm"></td>
+                                <td id="3x-fov"></td>
                             </tr>
                             <tr id="4x">
                                 <td class="aim-type">4x Scope</td>
-                                <td id="4x-sens">#</td>
-                                <td id="4x-cm">#</td>
-                                <td id="4x-fov">#</td>
+                                <td id="4x-sens"></td>
+                                <td id="4x-cm"></td>
+                                <td id="4x-fov"></td>
                             </tr>
                             <tr id="6x">
                                 <td class="aim-type">6x Scope</td>
-                                <td id="6x-sens">#</td>
-                                <td id="6x-cm">#</td>
-                                <td id="6x-fov">#</td>
+                                <td id="6x-sens"></td>
+                                <td id="6x-cm"></td>
+                                <td id="6x-fov"></td>
                             </tr>
                             <tr id="8x">
                                 <td class="aim-type">8x Scope</td>
-                                <td id="8x-sens">#</td>
-                                <td id="8x-cm">#</td>
-                                <td id="8x-fov">#</td>
+                                <td id="8x-sens"></td>
+                                <td id="8x-cm"></td>
+                                <td id="8x-fov"></td>
                             </tr>
                             <tr id="10x">
                                 <td class="aim-type">10x Scope</td>
-                                <td id="10x-sens">#</td>
-                                <td id="10x-cm">#</td>
-                                <td id="10x-fov">#</td>
+                                <td id="10x-sens"></td>
+                                <td id="10x-cm"></td>
+                                <td id="10x-fov"></td>
                             </tr>
                             </tr>
                         </tbody>
@@ -381,22 +407,22 @@
                             </tr>
                             <tr>
                                 <td>Overwatch</td>
-                                <td id="ow-sens">#</td>
+                                <td id="ow-sens"></td>
                                 <td id="ow-fov">16:9</td>
                             </tr>
                             <tr>
                                 <td>CS/Quake</td>
-                                <td id="quake-sens">#</td>
+                                <td id="quake-sens"></td>
                                 <td id="quake-fov">4:3</td>
                             </tr>
                             <tr>
                                 <td>Valorant</td>
-                                <td id="val-sens">#</td>
+                                <td id="val-sens"></td>
                                 <td id="val-fov">16:9</td>
                             </tr>
                             <tr>
                                 <td>Fortnite</td>
-                                <td id="fort-sens">#</td>
+                                <td id="fort-sens"></td>
                                 <td id="fort-fov">16:9</td>
                             </tr>
                         </tbody>
@@ -417,15 +443,15 @@
                             </tr>
                             <tr>
                                 <td id="fov-input-fov" style="display: none;" class="scale-sensitivity-content">FOV</td>
-                                <td id="16by9">#</td>
-                                <td id="4by3">#</td>
-                                <td id="1by1">#</td>
+                                <td id="16by9"></td>
+                                <td id="4by3"></td>
+                                <td id="1by1"></td>
                             </tr>
                             <tr id="new-fov-tr" style="display: none;" class="scale-sensitivity-content">
                                 <td id="fov-input-new-fov">New FOV</td>
-                                <td id="new16by9">#</td>
-                                <td id="new4by3">#</td>
-                                <td id="new1by1">#</td>
+                                <td id="new16by9"></td>
+                                <td id="new4by3"></td>
+                                <td id="new1by1"></td>
                             </tr>
                         </tbody>
                     </table>
