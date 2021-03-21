@@ -39,6 +39,25 @@ function gameSpecificFunc() {
   $('.csgo-content').each (function(){
     $(this).css('display', selected.textContent.includes('CS:GO') ? '' : 'none');
   });
+  const augRow = '<tr id="csgo-aug-row" class="csgo-content"><td>AUG / SG556</td><td id="aug-sens-output"></td><td id="aug-cm-output"></td><td id="aug-coefficient"></td></tr>'
+  const ssg1Row = '<tr id="csgo-ssg1-row" class="csgo-content"><td>SSG08 / Auto</td><td id="ssg1-sens-output"></td><td id="ssg1-cm-output"></td><td id="ssg1-coefficient"></td></tr>'
+  const ssg2Row = '<tr id="csgo-ssg2-row" class="csgo-content"><td>SSG08 / Auto x2</td><td id="ssg2-sens-output"></td><td id="ssg2-cm-output"></td><td id="ssg2-coefficient"></td></tr>'
+  const awp1Row = '<tr id="csgo-awp1-row" class="csgo-content"><td>Awp</td><td id="awp1-sens-output"></td><td id="awp1-cm-output"></td><td id="awp1-coefficient"></td></tr>'
+  const awp2Row = '<tr id="csgo-awp2-row" class="csgo-content"><td>Awp x2</td><td id="awp2-sens-output"></td><td id="awp2-cm-output"></td><td id="awp2-coefficient"></td></tr>'
+  if(selected.textContent.includes('CS:GO')){
+    $('#sensitivity-overview').append(augRow);
+    $('#sensitivity-overview').append(ssg1Row);
+    $('#sensitivity-overview').append(ssg2Row);
+    $('#sensitivity-overview').append(awp1Row);
+    $('#sensitivity-overview').append(awp2Row);
+  }else{
+    $('#csgo-aug-row').remove();
+    $('#csgo-ssg1-row').remove();
+    $('#csgo-ssg2-row').remove();
+    $('#csgo-awp1-row').remove();
+    $('#csgo-awp2-row').remove();
+  };
+
   // apex
   $('.apex-content').each (function(){
     $(this).css('display', selected.textContent.includes('Apex Legends') ? '' : 'none');
@@ -51,7 +70,6 @@ function gameSpecificFunc() {
   $('.fortnite-content').each (function(){
     $(this).css('display', selected.textContent.includes('Fortnite') ? '' : 'none');
   });
-  console.log('gameSpecificFunc loaded')
 }$().ready(gameSpecificFunc);
 
 
@@ -111,7 +129,7 @@ function randomCoefficientFunc() {
 function convertCmFunc() {
   const conCm = $('#convert-by-cm').is(':checked');
   document.getElementById('icm-container').style.display = conCm ? '' : 'none';
-  document.getElementById('sens-container').style.display = conCm ? 'none' : '';
+  document.getElementById('sensitivity-container').style.display = conCm ? 'none' : '';
 }$().ready(convertCmFunc);
 
 
@@ -151,13 +169,13 @@ function ccFunc() {
 // CALCULATE FUNCTION //
 // ------------------ //
 function calculate() {
-// math
+// Math //
 const tan    = Math.tan;
 const atan   = Math.atan;
 const pi     = Math.PI;
 const log    = Math.log;
 
-// inputs
+// Inputs //
 $('#overwatch').val('0.0066');
 $('#apex').val('0.022');
 $('#cs').val('0.022');
@@ -173,7 +191,7 @@ for (const rb of rbs) {
   }
 }
 var dpi       = $('#dpi').val() || '800';
-var sens      = $('#sens').val() || '6';
+var sens      = $('#sensitivity').val() || '6';
 var icm       = $('#icm').val() || '30';
 var fov       = $('#fov').val() || '103';
 var newFov    = $('#new-fov').val() || '113';
@@ -182,34 +200,15 @@ var conCm     = $('#convert-by-cm').is(':checked');
 var sens      = conCm ? (2.54 * 360 / (icm * yaw * dpi)).toFixed(mDecimals ? 5 : 2) : Number(sens).toFixed(mDecimals ? 5 : 2);
 var cm360     = conCm ? Number(icm).toFixed(mDecimals ? 5 : 2) : (2.54 * 360 / (sens * yaw * dpi)).toFixed(mDecimals ? 5 : 2);
 
-// outputs //
-var sensRange = document.getElementById("sens-range");
-var sensOutput = document.getElementById("sens-output");
-var cmOutput = document.getElementById("cm-output");
 
-var owSens = document.getElementById("ow-sens");
-var quakeSens = document.getElementById("quake-sens");
-var valSens = document.getElementById("val-sens");
-var fortSens = document.getElementById("fort-sens");
-
-var sixteenByNine = document.getElementById("16by9");
-var fourByThree = document.getElementById("4by3");
-var oneByOne = document.getElementById("1by1");
-var newSixteenByNine = document.getElementById("new16by9");
-var newFourByThree = document.getElementById("new4by3");
-var newOneByOne = document.getElementById("new1by1");
-
-/*
-  Sensitivty Converter 
-*/
-var ow = (sens * yaw * 10000 / 66).toFixed(mDecimals ? 5 : 2);
+// Sensitivty Converter //
+var overwatch = (sens * yaw * 10000 / 66).toFixed(mDecimals ? 5 : 2);
 var quake = (sens * yaw * 1000 / 22).toFixed(mDecimals ? 5 : 2);
-var val = (sens * yaw * 100 / 7).toFixed(mDecimals ? 5 : 2);
-var fort = (sens * yaw * 1000000 / 5555).toFixed(mDecimals ? 5 : 2);
+var valorant = (sens * yaw * 100 / 7).toFixed(mDecimals ? 5 : 2);
+var fortnite = (sens * yaw * 1000000 / 5555).toFixed(mDecimals ? 5 : 2);
 
-/*
-  Sensitivity Range Method
-*/
+
+// Sensitivity Range Method //
 var range = cm360 == 92 ?
  'Certified accel user'
 : cm360 > 50 ?
@@ -226,7 +225,7 @@ var range = cm360 == 92 ?
  'Mid'
 : cm360 >= 25 ?
  'Mid-high'
-: cm360 == 23.09 || ow == 7.5 && dpi == 800 ?
+: cm360 == 23.09 || overwatch == 7.5 && dpi == 800 ?
  'шпион'
 : cm360 >= 20 ? 
  'High'
@@ -240,12 +239,11 @@ var range = cm360 == 92 ?
  'Nonce'
 : 'Retard sens';
 
-/*
-  FOV Converter
-*/
-$('#16by9i').val(16/9);
-$('#4by3i').val(4/3);
-$('#1by1i').val(1/1);
+
+// FOV Converter //
+$('#16-by-9-input').val(16/9);
+$('#4-by-3-input').val(4/3);
+$('#1-by-1-input').val(1/1);
 const fovRbs = document.querySelectorAll('input[name="fov"]');
 let fovType;
 for (const fovRb of fovRbs) {
@@ -262,9 +260,8 @@ const newFbt = ((360 * atan(4/3 * 1/(fovType) * tan((newFov) * pi/360)))/pi).toF
 const newSbn = ((360 * atan(16/9 * 1/(fovType) * tan((newFov) * pi/360)))/pi).toFixed(mDecimals ? 5 : 2);
 const newOto = ((360 * atan(1/(fovType) * tan((newFov) * pi/360)))/pi).toFixed(mDecimals ? 5 : 2);
 
-/*
-  Scaling Sensitivity
-*/
+
+// Scaling Sensitivity //
 var scaledSens  = (sens / ((tan((fov) * pi/360) / tan((newFov) * pi/360)))).toFixed(mDecimals ? 5 : 2);
 var scaledCm    = (2.54 * 360 / (scaledSens * yaw * dpi)).toFixed(mDecimals ? 5 : 2);
 var scaledRange = scaledCm == 92 ?
@@ -283,7 +280,7 @@ var scaledRange = scaledCm == 92 ?
 'Mid'
 : scaledCm >= 25 ?
 'Mid-high'
-: scaledCm == 23.09 || ow == 7.5 && dpi == 800 ?
+: scaledCm == 23.09 || overwatch == 7.5 && dpi == 800 ?
 'шпион'
 : scaledCm >= 20 ? 
 'High'
@@ -296,8 +293,6 @@ var scaledRange = scaledCm == 92 ?
 : scaledCm == 0.3 ?
 'Nonce'
 : 'Retard sens';
-
-
 
 
 // Coefficient
@@ -320,7 +315,7 @@ var coefficientRange  =  coefficientCm == 92 ?
 'Mid'
 : coefficientCm >= 25 ?
 'Mid-high'
-: coefficientCm == 23.09 || ow == 7.5 && dpi == 800 ?
+: coefficientCm == 23.09 || overwatch == 7.5 && dpi == 800 ?
 'шпион'
 : coefficientCm >= 20 ? 
 'High'
@@ -334,14 +329,31 @@ var coefficientRange  =  coefficientCm == 92 ?
 'Nonce'
 : 'Retard sens';
 
+
 // Overwatch Settings
 const widowZoom = $('#overwatch-widow-input').val() || '37.89';
 const asheZoom = $('#overwatch-ashe-input').val() || '51.47';
 const widowSens = (sens * (widowZoom / 100)).toFixed(mDecimals ? 5 : 2);
 const asheSens = (sens * (asheZoom / 100)).toFixed(mDecimals ? 5 : 2);
 
-const widowCo = ((0.01 / 0.37890917574) * widowZoom).toFixed(mDecimals ? 5 : 2);
-const asheCo = ((0.01 / 0.51469332771) * asheZoom).toFixed(mDecimals ? 5 : 2);
+const widowCoefficient = ((0.01 / 0.37890917574) * widowZoom).toFixed(mDecimals ? 5 : 2);
+const asheCoefficient = ((0.01 / 0.51469332771) * asheZoom).toFixed(mDecimals ? 5 : 2);
+
+
+// CS:GO Settings
+const csZoom = $('#cs-zoom-input').val() || '0.818933027098955175';
+const augSens = ((45/90) * sens * csZoom).toFixed(mDecimals ? 5 : 2);
+const ssg1Sens = ((40/90) * sens * csZoom).toFixed(mDecimals ? 5 : 2);
+const ssg2Sens = ((15/90) * sens * csZoom).toFixed(mDecimals ? 5 : 2);
+const awp1Sens = ((40/90) * sens * csZoom).toFixed(mDecimals ? 5 : 2);
+const awp2Sens = ((10/90) * sens * csZoom).toFixed(mDecimals ? 5 : 2);
+
+const augCoefficient = (1 / ((1 / ((tan((90) * pi/360) / tan((45) * pi/360)))) / (45/90)) * csZoom).toFixed(mDecimals ? 5 : 2);
+const ssg1Coefficient = (1 / ((1 / ((tan((90) * pi/360) / tan((40) * pi/360)))) / (40/90)) * csZoom).toFixed(mDecimals ? 5 : 2);
+const ssg2Coefficient = (1 / ((1 / ((tan((90) * pi/360) / tan((15) * pi/360)))) / (15/90)) * csZoom).toFixed(mDecimals ? 5 : 2);
+const awp1Coefficient = (1 / ((1 / ((tan((90) * pi/360) / tan((40) * pi/360)))) / (40/90)) * csZoom).toFixed(mDecimals ? 5 : 2);
+const awp2Coefficient = (1 / ((1 / ((tan((90) * pi/360) / tan((10) * pi/360)))) / (10/90)) * csZoom).toFixed(mDecimals ? 5 : 2);
+
 
 // Apex Settings
 const apex1x = $('#apex-1x-input').val() || '1';
@@ -370,79 +382,98 @@ const apex6xOutput = (sens / ((tan((fbt) * pi/360) / tan((apex6xFov) * pi/360)))
 const apex8xOutput = (sens / ((tan((fbt) * pi/360) / tan((apex8xFov) * pi/360))) * apex8x).toFixed(mDecimals ? 5 : 2);
 const apex10xOutput = (sens / ((tan((fbt) * pi/360) / tan((apex10xFov) * pi/360))) * apex10x).toFixed(mDecimals ? 5 : 2);
 
+
 //---------------//
 // Table Outputs //
 //---------------//
 // Sensitivity Overview //
-sensOutput.innerHTML = sens;
-cmOutput.innerHTML = cm360;
-$('#sens-range').html(range);
-// console.log(document.getElementById('cmOutput').innerHTML);
-// console.log($('#sens-range').html());
+$('#sensitivity-output').html(sens);
+$('#cm-output').html(cm360);
+$('#sensitivity-range').html(range);
 // scaled sensitivity
 if($('#ss').is(':checked')){
-document.getElementById('scaled-sens').innerHTML = scaledSens;
-document.getElementById('scaled-cm').innerHTML = scaledCm;
-document.getElementById('scaled-range').innerHTML = scaledRange;
+$('#scaled-sens').html(scaledSens);
+$('#scaled-cm').html(scaledCm);
+$('#scaled-range').html(scaledRange);
 };
 // coefficient
 if($('#cc').is(':checked')){
-document.getElementById('coefficient-sens').innerHTML = coefficientSens;
-document.getElementById('coefficient-cm').innerHTML = coefficientCm;
-document.getElementById('coefficient-range').innerHTML = coefficientRange;
+$('#coefficient-sens').html(coefficientSens);
+$('#coefficient-cm').html(coefficientCm);
+$('#coefficient-range').html(coefficientRange);
 };
 
 // Sensitivity Converter //
-owSens.innerHTML = ow;
-quakeSens.innerHTML = quake;
-valSens.innerHTML = val;
-fortSens.innerHTML = fort;
+$('#overwatch-sens').html(overwatch);
+$('#quake-sens').html(quake);
+$('#valorant-sens').html(valorant);
+$('#fornite-sens').html(fortnite);
 
 // FOV Converter //
-sixteenByNine.innerHTML = sbn;
-fourByThree.innerHTML = fbt;
-oneByOne.innerHTML = oto;
-newSixteenByNine.innerHTML = newSbn;
-newFourByThree.innerHTML = newFbt;
-newOneByOne.innerHTML = newOto;
+$('#16by9').html(sbn);
+$('#4by3').html(fbt);
+$('#1by1').html(oto);
+$('#new-16by9').html(newSbn);
+$('#new-4by3').html(newFbt);
+$('#new-1by1').html(newOto);
 
-// Overwatch Settings //
+// Overwatch Outputs //
 if(selected.textContent.includes('Overwatch')){
-document.getElementById('widow-sens-output').innerHTML = widowSens;
-document.getElementById('ashe-sens-output').innerHTML = asheSens;
-document.getElementById('widow-cm-output').innerHTML = (2.54 * 360 / (widowSens * yaw * dpi)).toFixed(mDecimals ? 5 : 2);
-document.getElementById('ashe-cm-output').innerHTML = (2.54 * 360 / (asheSens * yaw * dpi)).toFixed(mDecimals ? 5 : 2);
-document.getElementById('widow-coefficient').innerHTML = widowCo;
-document.getElementById('ashe-coefficient').innerHTML = asheCo;
+$('#widow-sens-output').html(widowSens);
+$('#ashe-sens-output').html(asheSens);
+$('#widow-cm-output').html((2.54 * 360 / (widowSens * yaw * dpi)).toFixed(mDecimals ? 5 : 2));
+$('#ashe-cm-output').html((2.54 * 360 / (asheSens * yaw * dpi)).toFixed(mDecimals ? 5 : 2));
+$('#widow-coefficient').html(widowCoefficient);
+$('#ashe-coefficient').html(asheCoefficient);
+};
+
+// CS:GO Outputs //
+if(selected.textContent.includes('CS:GO')){
+$('#aug-sens-output').html(augSens);
+$('#ssg1-sens-output').html(ssg1Sens);
+$('#ssg2-sens-output').html(ssg2Sens);
+$('#awp1-sens-output').html(awp1Sens);
+$('#awp2-sens-output').html(awp2Sens);
+$('#aug-cm-output').html((2.54 * 360 / (augSens * yaw * dpi)).toFixed(mDecimals ? 5 : 2));
+$('#ssg1-cm-output').html((2.54 * 360 / (ssg1Sens * yaw * dpi)).toFixed(mDecimals ? 5 : 2));
+$('#ssg2-cm-output').html((2.54 * 360 / (ssg2Sens * yaw * dpi)).toFixed(mDecimals ? 5 : 2));
+$('#awp1-cm-output').html((2.54 * 360 / (awp1Sens * yaw * dpi)).toFixed(mDecimals ? 5 : 2));
+$('#awp2-cm-output').html((2.54 * 360 / (awp2Sens * yaw * dpi)).toFixed(mDecimals ? 5 : 2));
+$('#aug-coefficient').html(augCoefficient);
+$('#ssg1-coefficient').html(ssg1Coefficient);
+$('#ssg2-coefficient').html(ssg2Coefficient);
+$('#awp1-coefficient').html(awp1Coefficient);
+$('#awp2-coefficient').html(awp2Coefficient);
 }
-// Apex Overview //
-document.getElementById('hipfire-sens').innerHTML = sens;
-document.getElementById('1x-sens').innerHTML = apex1xOutput;
-document.getElementById('ar-sens').innerHTML = apexArOutput;
-document.getElementById('2x-sens').innerHTML = apex2xOutput;
-document.getElementById('3x-sens').innerHTML = apex3xOutput;
-document.getElementById('4x-sens').innerHTML = apex4xOutput;
-document.getElementById('6x-sens').innerHTML = apex6xOutput;
-document.getElementById('8x-sens').innerHTML = apex8xOutput;
-document.getElementById('10x-sens').innerHTML = apex10xOutput;
-document.getElementById('hipfire-cm').innerHTML = cm360;
-document.getElementById('1x-cm').innerHTML = (2.54 * 360 / (apex1xOutput * yaw * dpi)).toFixed(mDecimals ? 5 : 2);
-document.getElementById('ar-cm').innerHTML = (2.54 * 360 / (apexArOutput * yaw * dpi)).toFixed(mDecimals ? 5 : 2);
-document.getElementById('2x-cm').innerHTML = (2.54 * 360 / (apex2xOutput * yaw * dpi)).toFixed(mDecimals ? 5 : 2);
-document.getElementById('3x-cm').innerHTML = (2.54 * 360 / (apex3xOutput * yaw * dpi)).toFixed(mDecimals ? 5 : 2);
-document.getElementById('4x-cm').innerHTML = (2.54 * 360 / (apex4xOutput * yaw * dpi)).toFixed(mDecimals ? 5 : 2);
-document.getElementById('6x-cm').innerHTML = (2.54 * 360 / (apex6xOutput * yaw * dpi)).toFixed(mDecimals ? 5 : 2);
-document.getElementById('8x-cm').innerHTML = (2.54 * 360 / (apex8xOutput * yaw * dpi)).toFixed(mDecimals ? 5 : 2);
-document.getElementById('10x-cm').innerHTML =(2.54 * 360 / (apex10xOutput * yaw * dpi)).toFixed(mDecimals ? 5 : 2);
-document.getElementById('hipfire-fov').innerHTML = fbt;
-document.getElementById('1x-fov').innerHTML = (fbt / (7/6)).toFixed(mDecimals ? 5 : 2);
-document.getElementById('ar-fov').innerHTML = (fbt / (70/55)).toFixed(mDecimals ? 5 : 2);
-document.getElementById('2x-fov').innerHTML = (fbt / (70/38.6)).toFixed(mDecimals ? 5 : 2);
-document.getElementById('3x-fov').innerHTML = (fbt / (70/26.28)).toFixed(mDecimals ? 5 : 2);
-document.getElementById('4x-fov').innerHTML = (fbt / (70/19.86)).toFixed(mDecimals ? 5 : 2);
-document.getElementById('6x-fov').innerHTML = (fbt / (70/13.312)).toFixed(mDecimals ? 5 : 2);
-document.getElementById('8x-fov').innerHTML = (fbt / (70/10.004)).toFixed(mDecimals ? 5 : 2);
-document.getElementById('10x-fov').innerHTML = (fbt / (70/8.01)).toFixed(mDecimals ? 5 : 2);
+
+// Apex Outputs //
+$('#hipfire-sens').html(sens);
+$('#1x-sens').html(apex1xOutput);
+$('#ar-sens').html(apexArOutput);
+$('#2x-sens').html(apex2xOutput);
+$('#3x-sens').html(apex3xOutput);
+$('#4x-sens').html(apex4xOutput);
+$('#6x-sens').html(apex6xOutput);
+$('#8x-sens').html(apex8xOutput);
+$('#10x-sens').html(apex10xOutput);
+$('#hipfire-cm').html(cm360);
+$('#1x-cm').html((2.54 * 360 / (apex1xOutput * yaw * dpi)).toFixed(mDecimals ? 5 : 2));
+$('#ar-cm').html((2.54 * 360 / (apexArOutput * yaw * dpi)).toFixed(mDecimals ? 5 : 2));
+$('#2x-cm').html((2.54 * 360 / (apex2xOutput * yaw * dpi)).toFixed(mDecimals ? 5 : 2));
+$('#3x-cm').html((2.54 * 360 / (apex3xOutput * yaw * dpi)).toFixed(mDecimals ? 5 : 2));
+$('#4x-cm').html((2.54 * 360 / (apex4xOutput * yaw * dpi)).toFixed(mDecimals ? 5 : 2));
+$('#6x-cm').html((2.54 * 360 / (apex6xOutput * yaw * dpi)).toFixed(mDecimals ? 5 : 2));
+$('#8x-cm').html((2.54 * 360 / (apex8xOutput * yaw * dpi)).toFixed(mDecimals ? 5 : 2));
+$('#10x-cm').html((2.54 * 360 / (apex10xOutput * yaw * dpi)).toFixed(mDecimals ? 5 : 2));
+$('#hipfire-fov').html(fbt);
+$('#1x-fov').html((fbt / (7/6)).toFixed(mDecimals ? 5 : 2));
+$('#ar-fov').html((fbt / (70/55)).toFixed(mDecimals ? 5 : 2));
+$('#2x-fov').html((fbt / (70/38.6)).toFixed(mDecimals ? 5 : 2));
+$('#3x-fov').html((fbt / (70/26.28)).toFixed(mDecimals ? 5 : 2));
+$('#4x-fov').html((fbt / (70/19.86)).toFixed(mDecimals ? 5 : 2));
+$('#6x-fov').html((fbt / (70/13.312)).toFixed(mDecimals ? 5 : 2));
+$('#8x-fov').html((fbt / (70/10.004)).toFixed(mDecimals ? 5 : 2));
+$('#10x-fov').html((fbt / (70/8.01)).toFixed(mDecimals ? 5 : 2));
 }$().ready(calculate);
 
 

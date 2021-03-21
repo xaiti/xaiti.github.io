@@ -311,8 +311,8 @@ input::-webkit-inner-spin-button {
     right: 0;
     height: 23px;
     width: 23px;
-    background-color: #28313b;
-    border: 1px solid #202225;
+    background-color: #0000001a;
+    border: 1px solid #20272f;
     transition-duration: 0.25s;
 }
 /* create the custom radio button */
@@ -322,14 +322,14 @@ input::-webkit-inner-spin-button {
     left: 0;
     height: 23px;
     width: 23px;
-    background-color: #28313b;
+    background-color: #0000001a;
+    border: 1px solid #20272f;
     border-radius: 50%;
-    border: 1px solid #202225;
     transition-duration: 0.25s;
 }
 /* on mouse-over, change background color */
 .button-container:hover input ~ .checkmark, .button-container:hover input ~ .radiomark {
-    background-color: #292b2f;
+    background-color: #00000026;
 }
 .button-container:hover {
     color: #8e9297a1;
@@ -354,7 +354,7 @@ input::-webkit-inner-spin-button {
     top: 5px;
     width: 5px;
     height: 10px;
-    border: solid #202225;
+    border: solid #20272f;
     border-width: 0 3px 3px 0;
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
@@ -367,7 +367,7 @@ input::-webkit-inner-spin-button {
     width: 11px;
     height: 11px;
     border-radius: 50%;
-    background: #202225;
+    background: #20272f;
 }
 
 /* ---------------------- */
@@ -451,7 +451,7 @@ table {
     margin-bottom: 1em;
 }
 .primary-table-header {
-    background: rgba(0, 0, 0, 0.150);
+    background: #00000026;
 }
 th {
     text-align: left;
@@ -462,7 +462,7 @@ td {
     padding: 8px;
 }
 tr:nth-child(odd) {
-    background: rgba(0, 0, 0, 0.10);
+    background: #0000001a;
 }
 
 /* .secondary-table-header {

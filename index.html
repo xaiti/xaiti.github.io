@@ -140,11 +140,11 @@
                         </div>
 
                         <!-- SENSITIVITY INPUT -->
-                        <div id="sens-container">
-                            <label for="sens">Sensitivity:</label>
+                        <div id="sensitivity-container">
+                            <label for="sensitivity">Sensitivity:</label>
                             <div class="inner-container">
-                                <input id="sens" class="number-input" type="number" step="any" placeholder="6">
-                                <!-- sens ramdomizer -->
+                                <input id="sensitivity" class="number-input" type="number" step="any" placeholder="6">
+                                <!-- sensitivity ramdomizer -->
                                 <div class="random-button tooltip" onclick="randomSensFunc()">
                                     <div class="dice-roll"></div>
                                     <span class="tooltiptext">Sensitivity Randomizer</span>
@@ -157,7 +157,7 @@
                             <label for="icm">cm/360:</label>
                             <div class="inner-container">
                                 <input id="icm" class="number-input" type="number" step="any" placeholder="30">
-                                <!-- sens ramdomizer -->
+                                <!-- sensitivity ramdomizer -->
                                 <div class="random-button tooltip" onclick="randomSensFunc()">
                                     <div class="dice-roll"></div>
                                     <span class="tooltiptext">Sensitivity Randomizer</span>
@@ -243,16 +243,16 @@
                         <!-- FOV RADIO BUTTONS -->
                         <div>
                             <span>FOV Type:</span>
-                            <label class="button-container" for="16by9i" style="padding-left: 33px;">16:9 Based
-                                <input type="radio" name="fov" id="16by9i" value="16/9" checked>
+                            <label class="button-container" for="16-by-9-input" style="padding-left: 33px;">16:9 Based
+                                <input type="radio" name="fov" id="16-by-9-input" value="16/9" checked>
                                 <span class="radiomark"></span>
                             </label>
-                            <label class="button-container" for="4by3i" style="padding-left: 33px; margin-top: 4px;">4:3 Based
-                                <input type="radio" name="fov" id="4by3i" value="4/3">
+                            <label class="button-container" for="4-by-3-input" style="padding-left: 33px; margin-top: 4px;">4:3 Based
+                                <input type="radio" name="fov" id="4-by-3-input" value="4/3">
                                 <span class="radiomark"></span>
                             </label>
-                            <label class="button-container" for="1by1i" style="padding-left: 33px; margin-top: 4px;">1:1 Vertical
-                                <input type="radio" name="fov" id="1by1i" value="1/1">
+                            <label class="button-container" for="1-by-1-input" style="padding-left: 33px; margin-top: 4px;">1:1 Vertical
+                                <input type="radio" name="fov" id="1-by-1-input" value="1/1">
                                 <span class="radiomark"></span>
                             </label>
                         </div>
@@ -278,13 +278,13 @@
                                 <th>Aim</th>
                                 <th>Raw Sensitivity</th>
                                 <th>cm/360</th>
-                                <th id="sens-range-title">Range/Zoom Coefficient</th>
+                                <th id="sensitivity-range-title">Range/Zoom Coefficient</th>
                             </tr>
                             <tr>
                                 <td id="aim-output">Hipfire</td>
-                                <td id="sens-output"></td>
+                                <td id="sensitivity-output"></td>
                                 <td id="cm-output"></td>
-                                <td id="sens-range"></td>
+                                <td id="sensitivity-range"></td>
                             </tr>
                             <!-- FOCAL LENGTH ROW -->
                             <!-- <tr id="scaled-sens-row" class="hidden-row scale-sensitivity-content">
@@ -407,8 +407,8 @@
                             </tr>
                             <tr>
                                 <td>Overwatch</td>
-                                <td id="ow-sens"></td>
-                                <td id="ow-fov">16:9</td>
+                                <td id="overwatch-sens"></td>
+                                <td id="overwatch-fov">16:9</td>
                             </tr>
                             <tr>
                                 <td>CS/Quake</td>
@@ -417,13 +417,13 @@
                             </tr>
                             <tr>
                                 <td>Valorant</td>
-                                <td id="val-sens"></td>
-                                <td id="val-fov">16:9</td>
+                                <td id="valorant-sens"></td>
+                                <td id="valorant-fov">16:9</td>
                             </tr>
                             <tr>
                                 <td>Fortnite</td>
-                                <td id="fort-sens"></td>
-                                <td id="fort-fov">16:9</td>
+                                <td id="fortnite-sens"></td>
+                                <td id="fortnite-fov">16:9</td>
                             </tr>
                         </tbody>
                     </table>
@@ -449,9 +449,9 @@
                             </tr>
                             <tr id="new-fov-tr" style="display: none;" class="scale-sensitivity-content">
                                 <td id="fov-input-new-fov">New FOV</td>
-                                <td id="new16by9"></td>
-                                <td id="new4by3"></td>
-                                <td id="new1by1"></td>
+                                <td id="new-16by9"></td>
+                                <td id="new-4by3"></td>
+                                <td id="new-1by1"></td>
                             </tr>
                         </tbody>
                     </table>
