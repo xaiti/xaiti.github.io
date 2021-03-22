@@ -60,28 +60,28 @@
                 <div class="game-info-container">
                     <div class="overwatch-content">
                         <span class="game-title">Overwatch</span>
-                        <span class="game-info">Totally useful information about Overwatch</span>
+                        <span class="game-info">Recomended sensitivity ranges:<br>Hitscan: 30cm - 40cm<br>Tracer: 22cm - 32cm<br><br>Scope FOV (vML):<br>Ashe: 40<br>Ana/Widow: 30</span>
                     </div>
                 </div>
                 <!-- csgo -->
                 <div class="game-info-container">
                     <div class="csgo-content">
                         <span class="game-title">CS:GO</span>
-                        <span class="game-info">Totally useful information about CS:GO</span>
+                        <span class="game-info">Recomended sensitivity range: 30cm - 50cm<br><br>Scope FOV (4ML3):<br>AUG/SG556: 45<br>AWP/SSG08/Auto: 40<br>SSG08/Auto x2: 15<br>AWP x2: 10</span>
                     </div>
                 </div>
                 <!-- apex -->
                 <div class="game-info-container">
                     <div class="apex-content">
                         <span class="game-title">Apex Legends</span>
-                        <span class="game-info">Totally useful information about Apex Legends</span>
+                        <span class="game-info">Recomended sensitivity range: 28cm - 38cm</span>
                     </div>
                 </div>
                 <!-- valorant -->
                 <div class="game-info-container">
                     <div class="valorant-content">
                         <span class="game-title">Valorant</span>
-                        <span class="game-info">Totally useful information about Valorant</span>
+                        <span class="game-info">Recomended sensitivity range: 30cm - 50cm<br><br>Scope FOV (16MS9):<br>SMG: 89.57<br>AR/LMG: 82.4<br>Gaurdian: 86.67<br>Sniper: 41.2<br>Operator: 20.6</span>
                     </div>
                 </div>
                 <!-- fortnite -->
@@ -145,7 +145,7 @@
                             <div class="inner-container">
                                 <input id="sensitivity" class="number-input" type="number" step="any" placeholder="6">
                                 <!-- sensitivity ramdomizer -->
-                                <div class="random-button tooltip" onclick="randomSensFunc()">
+                                <div class="random-button tooltip" onclick="randomSensFunc(); calculate()">
                                     <div class="dice-roll"></div>
                                     <span class="tooltiptext">Sensitivity Randomizer</span>
                                 </div>
@@ -158,7 +158,7 @@
                             <div class="inner-container">
                                 <input id="icm" class="number-input" type="number" step="any" placeholder="30">
                                 <!-- sensitivity ramdomizer -->
-                                <div class="random-button tooltip" onclick="randomSensFunc()">
+                                <div class="random-button tooltip" onclick="randomSensFunc(); calculate()">
                                     <div class="dice-roll"></div>
                                     <span class="tooltiptext">Sensitivity Randomizer</span>
                                 </div>
@@ -173,7 +173,7 @@
                                 <input id="coefficient" class="number-input" type="number" step="any" placeholder="1.1">
                                 <!-- coefficient randomizer -->
                                 <div class="random-button tooltip">
-                                    <div class="dice-roll" onclick="randomCoefficientFunc()"></div>
+                                    <div class="dice-roll" onclick="randomCoefficientFunc(); calculate()"></div>
                                     <span class="tooltiptext">Coefficient Randomizer</span>
                                 </div>
                             </div>
@@ -226,6 +226,11 @@
                             <label>10x Optic:</label>
                             <input class="number-input" type="number" id="apex-10x-input" step="any" placeholder="1">
                         </div>
+                        </div>
+                        <!-- VALORANT ZOOM SENS -->
+                        <div class="valorant-content">
+                            <label>Zoom Sensitivity:</label>
+                            <input class="number-input" type="number" id="valorant-zoom" step="any" placeholder="1">
                         </div>
 
                         <!-- FOV INPUT -->
@@ -281,113 +286,10 @@
                                 <th id="sensitivity-range-title">Range/Zoom Coefficient</th>
                             </tr>
                             <tr>
-                                <td id="aim-output">Hipfire</td>
+                                <td id="aim-type">Hipfire</td>
                                 <td id="sensitivity-output"></td>
                                 <td id="cm-output"></td>
                                 <td id="sensitivity-range"></td>
-                            </tr>
-                            <!-- FOCAL LENGTH ROW -->
-                            <!-- <tr id="scaled-sens-row" class="hidden-row scale-sensitivity-content">
-                                <td>Scaled by FOV</td>
-                                <td id="scaled-sens"></td>
-                                <td id="scaled-cm"></td>
-                                <td id="scaled-range"></td>
-                            </tr> -->
-                            <!-- COEFFICIENT ROW -->
-                            <!-- <tr id="coefficient-row" class="hidden-row coefficient-content">
-                                <td>Hipfire Coefficient</td>
-                                <td id="coefficient-sens"></td>
-                                <td id="coefficient-cm"></td>
-                                <td id="coefficient-range"></td>
-                            </tr> -->
-                            <!-- <tr id="neg-coefficient-row" style="display: none;">
-                                <td id="neg-co-title">Negative</td>
-                                <td id="neg-co-sens"></td>
-                                <td id="neg-co-cm"></td>
-                            </tr> -->
-                            <!-- OVERWATCH ROWS -->
-                            <!-- <tr id="overwatch-ashe-row" class="overwatch-content">
-                                <td>Ashe</td>
-                                <td id="ashe-sens-output"></td>
-                                <td id="ashe-cm-output"></td>
-                                <td id="ashe-coefficient"></td>
-                            </tr> -->
-                            <!-- <tr id="overwatch-widow-row" class="overwatch-content">
-                                <td>Widow/Ana</td>
-                                <td id="widow-sens-output"></td>
-                                <td id="widow-cm-output"></td>
-                                <td id="widow-coefficient"></td>
-                            </tr> -->
-                        </tbody>
-                    </table>
-                    <!-- APEX TABLE -->
-                    <table class="apex-content">
-                        <thead>
-                            <tr>
-                                <th class="primary-table-header" colspan="4">Apex Overview</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="aim-type">Aim</td>
-                                <td>Sensitivity</td>
-                                <td>cm/360</td>
-                                <td>FOV</td>
-                            </tr>
-                            <tr id="hipfire">
-                                <td class="aim-type">Hipfire, RE-45</td>
-                                <td id="hipfire-sens"></td>
-                                <td id="hipfire-cm"></td>
-                                <td id="hipfire-fov"></td>
-                            </tr>
-                            <tr id="1x">
-                                <td class="aim-type">1x Scope, Pistol, SMG, Shotgun</td>
-                                <td id="1x-sens"></td>
-                                <td id="1x-cm"></td>
-                                <td id="1x-fov"></td>
-                            </tr>
-                            <tr id="ar-lmg-sniper">
-                                <td class="aim-type">AR, LMG, Sniper</td>
-                                <td id="ar-sens"></td>
-                                <td id="ar-cm"></td>
-                                <td id="ar-fov"></td>
-                            </tr>
-                            <tr id="2x">
-                                <td class="aim-type">2x Scope</td>
-                                <td id="2x-sens"></td>
-                                <td id="2x-cm"></td>
-                                <td id="2x-fov"></td>
-                            </tr>
-                            <tr id="3x">
-                                <td class="aim-type">3x Scope</td>
-                                <td id="3x-sens"></td>
-                                <td id="3x-cm"></td>
-                                <td id="3x-fov"></td>
-                            </tr>
-                            <tr id="4x">
-                                <td class="aim-type">4x Scope</td>
-                                <td id="4x-sens"></td>
-                                <td id="4x-cm"></td>
-                                <td id="4x-fov"></td>
-                            </tr>
-                            <tr id="6x">
-                                <td class="aim-type">6x Scope</td>
-                                <td id="6x-sens"></td>
-                                <td id="6x-cm"></td>
-                                <td id="6x-fov"></td>
-                            </tr>
-                            <tr id="8x">
-                                <td class="aim-type">8x Scope</td>
-                                <td id="8x-sens"></td>
-                                <td id="8x-cm"></td>
-                                <td id="8x-fov"></td>
-                            </tr>
-                            <tr id="10x">
-                                <td class="aim-type">10x Scope</td>
-                                <td id="10x-sens"></td>
-                                <td id="10x-cm"></td>
-                                <td id="10x-fov"></td>
-                            </tr>
                             </tr>
                         </tbody>
                     </table>

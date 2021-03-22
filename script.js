@@ -25,8 +25,8 @@ function gameSpecificFunc() {
   $('.overwatch-content').each (function(){
     $(this).css('display', selected.textContent.includes('Overwatch') ? '' : 'none');
   });
-  const asheRow = '<tr id="overwatch-ashe-row" class="overwatch-content"><td>Ashe</td><td id="ashe-sens-output"></td><td id="ashe-cm-output"></td><td id="ashe-coefficient"></td></tr>'
-  const widowRow = '<tr id="overwatch-widow-row" class="overwatch-content"><td>Widow/Ana</td><td id="widow-sens-output"></td><td id="widow-cm-output"></td><td id="widow-coefficient"></td></tr>'
+  const asheRow = '<tr id="overwatch-ashe-row"><td>Ashe</td><td id="ashe-sens-output"></td><td id="ashe-cm-output"></td><td id="ashe-coefficient"></td></tr>';
+  const widowRow = '<tr id="overwatch-widow-row"><td>Widow/Ana</td><td id="widow-sens-output"></td><td id="widow-cm-output"></td><td id="widow-coefficient"></td></tr>';
   if(selected.textContent.includes('Overwatch')){
     $('#sensitivity-overview').append(asheRow);
     $('#sensitivity-overview').append(widowRow);
@@ -39,11 +39,11 @@ function gameSpecificFunc() {
   $('.csgo-content').each (function(){
     $(this).css('display', selected.textContent.includes('CS:GO') ? '' : 'none');
   });
-  const augRow = '<tr id="csgo-aug-row" class="csgo-content"><td>AUG / SG556</td><td id="aug-sens-output"></td><td id="aug-cm-output"></td><td id="aug-coefficient"></td></tr>'
-  const ssg1Row = '<tr id="csgo-ssg1-row" class="csgo-content"><td>SSG08 / Auto</td><td id="ssg1-sens-output"></td><td id="ssg1-cm-output"></td><td id="ssg1-coefficient"></td></tr>'
-  const ssg2Row = '<tr id="csgo-ssg2-row" class="csgo-content"><td>SSG08 / Auto x2</td><td id="ssg2-sens-output"></td><td id="ssg2-cm-output"></td><td id="ssg2-coefficient"></td></tr>'
-  const awp1Row = '<tr id="csgo-awp1-row" class="csgo-content"><td>Awp</td><td id="awp1-sens-output"></td><td id="awp1-cm-output"></td><td id="awp1-coefficient"></td></tr>'
-  const awp2Row = '<tr id="csgo-awp2-row" class="csgo-content"><td>Awp x2</td><td id="awp2-sens-output"></td><td id="awp2-cm-output"></td><td id="awp2-coefficient"></td></tr>'
+  const augRow = '<tr id="csgo-aug-row"><td>AUG / SG556</td><td id="aug-sens-output"></td><td id="aug-cm-output"></td><td id="aug-coefficient"></td></tr>';
+  const ssg1Row = '<tr id="csgo-ssg1-row"><td>SSG08 / Auto</td><td id="ssg1-sens-output"></td><td id="ssg1-cm-output"></td><td id="ssg1-coefficient"></td></tr>';
+  const ssg2Row = '<tr id="csgo-ssg2-row"><td>SSG08 / Auto x2</td><td id="ssg2-sens-output"></td><td id="ssg2-cm-output"></td><td id="ssg2-coefficient"></td></tr>';
+  const awp1Row = '<tr id="csgo-awp1-row"><td>AWP</td><td id="awp1-sens-output"></td><td id="awp1-cm-output"></td><td id="awp1-coefficient"></td></tr>';
+  const awp2Row = '<tr id="csgo-awp2-row"><td>AWP x2</td><td id="awp2-sens-output"></td><td id="awp2-cm-output"></td><td id="awp2-coefficient"></td></tr>';
   if(selected.textContent.includes('CS:GO')){
     $('#sensitivity-overview').append(augRow);
     $('#sensitivity-overview').append(ssg1Row);
@@ -62,10 +62,61 @@ function gameSpecificFunc() {
   $('.apex-content').each (function(){
     $(this).css('display', selected.textContent.includes('Apex Legends') ? '' : 'none');
   });
+  const apex1xRow = '<tr id="apex-1x-row"><td>1x Scope, Pistol, SMG, Shotgun</td><td id="apex-1x-sens"></td><td id="apex-1x-cm"></td><td id="apex-1x-magnification"></td></tr>';
+  const apexArRow = '<tr id="apex-ar-row"><td>AR, LMG, Sniper</td><td id="apex-ar-sens"></td><td id="apex-ar-cm"></td><td id="apex-ar-magnification"></td></tr>';
+  const apex2xRow = '<tr id="apex-2x-row"><td>2x Scope</td><td id="apex-2x-sens"></td><td id="apex-2x-cm"></td><td id="apex-2x-magnification"></td></tr>';
+  const apex3xRow = '<tr id="apex-3x-row"><td>3x Scope</td><td id="apex-3x-sens"></td><td id="apex-3x-cm"></td><td id="apex-3x-magnification"></td></tr>';
+  const apex4xRow = '<tr id="apex-4x-row"><td>4x Scope</td><td id="apex-4x-sens"></td><td id="apex-4x-cm"></td><td id="apex-4x-magnification"></td></tr>';
+  const apex6xRow = '<tr id="apex-6x-row"><td>6x Scope</td><td id="apex-6x-sens"></td><td id="apex-6x-cm"></td><td id="apex-6x-magnification"></td></tr>';
+  const apex8xRow = '<tr id="apex-8x-row"><td>8x Scope</td><td id="apex-8x-sens"></td><td id="apex-8x-cm"></td><td id="apex-8x-magnification"></td></tr>';
+  const apex10xRow = '<tr id="apex-10x-row"><td>10x Scope</td><td id="apex-10x-sens"></td><td id="apex-10x-cm"></td><td id="apex-10x-magnification"></td></tr>';
+  if(selected.textContent.includes('Apex Legends')){
+    $('#sensitivity-range-title').html('Magnification');
+    $('#aim-type').append(', RE-45');
+    $('#sensitivity-overview').append(apex1xRow);
+    $('#sensitivity-overview').append(apexArRow);
+    $('#sensitivity-overview').append(apex2xRow);
+    $('#sensitivity-overview').append(apex3xRow);
+    $('#sensitivity-overview').append(apex4xRow);
+    $('#sensitivity-overview').append(apex6xRow);
+    $('#sensitivity-overview').append(apex8xRow);
+    $('#sensitivity-overview').append(apex10xRow);
+  }else{
+    $('#sensitivity-range-title').html('Range/Zoom Coefficient');
+    $('#aim-type').html($('#aim-type').text().replace(/\, RE-45$/, ''));
+    $('#apex-1x-row').remove();
+    $('#apex-ar-row').remove();
+    $('#apex-2x-row').remove();
+    $('#apex-3x-row').remove();
+    $('#apex-4x-row').remove();
+    $('#apex-6x-row').remove();
+    $('#apex-8x-row').remove();
+    $('#apex-10x-row').remove();
+  }
+  
   // valorant
   $('.valorant-content').each (function(){
     $(this).css('display', selected.textContent.includes('Valorant') ? '' : 'none');
   });
+  const valorantSmgRow = '<tr id="valorant-smg-row"><td>Spectre/Stinger</td><td id="valorant-smg-sens"></td><td id="valorant-smg-cm"></td><td id="valorant-smg-coefficient"></td></tr>';
+  const valorantArRow = '<tr id="valorant-ar-row"><td>Bulldog/Phantom/Vandal/Ares/Odin</td><td id="valorant-ar-sens"></td><td id="valorant-ar-cm"></td><td id="valorant-ar-coefficient"></td></tr>';
+  const valorantGaurdianRow = '<tr id="valorant-gaurdian-row"><td>Gaurdian</td><td id="valorant-gaurdian-sens"></td><td id="valorant-gaurdian-cm"></td><td id="valorant-gaurdian-coefficient"></td></tr>';
+  const valorantSniperRow = '<tr id="valorant-sniper-row"><td>Marshal, Operator</td><td id="valorant-sniper-sens"></td><td id="valorant-sniper-cm"></td><td id="valorant-sniper-coefficient"></td></tr>';
+  const valorantOperatorX2Row = '<tr id="valorant-operator-x2-row"><td>Operator x2</td><td id="valorant-operator-x2-sens"></td><td id="valorant-operator-x2-cm"></td><td id="valorant-operator-x2-coefficient"></td></tr>';
+  if(selected.textContent.includes('Valorant')){
+    $('#sensitivity-overview').append(valorantSmgRow);
+    $('#sensitivity-overview').append(valorantArRow);
+    $('#sensitivity-overview').append(valorantGaurdianRow);
+    $('#sensitivity-overview').append(valorantSniperRow);
+    $('#sensitivity-overview').append(valorantOperatorX2Row);
+  }else{
+    $('#valorant-smg-row').remove()
+    $('#valorant-ar-row').remove()
+    $('#valorant-gaurdian-row').remove()
+    $('#valorant-sniper-row').remove()
+    $('#valorant-operator-x2-row').remove()
+  }
+
   // fortnite
   $('.fortnite-content').each (function(){
     $(this).css('display', selected.textContent.includes('Fortnite') ? '' : 'none');
@@ -78,34 +129,25 @@ function gameSpecificFunc() {
 // --------------------------- //
 function randomSensFunc() {
   const mDecimals = $('#more-decimals').is(':checked');
-  const icm      = document.getElementById('icm');
-  const sens     = document.getElementById('sens');
-  const dpi      = $('#dpi').val() || '800';
-  const rbs      = document.querySelectorAll('input[name="game"]');
+  const rbs = document.querySelectorAll('input[name="game"]');
   let yaw; for (const rb of rbs) {if (rb.checked) {yaw = rb.value;break;}}
   $('#overwatch').val('0.0066');$('#apex').val('0.022');$('#cs').val('0.022');
   $('#valorant').val('0.07');$('#fortnite').val('0.005555');$('#quake').val('0.022');
 
   var generate = Math.random() * 100;
   var low      = Math.random() * (45 - 34.99) + 34.99;
-  var mLow     = Math.random() * (35 - 32.1) + 32.1;
-  var medium   = Math.random() * (32 - 28) + 28;
-  var mHigh    = Math.random() * (27.99 - 25) + 25;
+  var medium    = Math.random() * (35 - 25) + 25;
   var high     = Math.random() * (24.99 - 15) + 15;
   var random   = generate < 25 ?
   low
-  : generate < 40 ?
-  mLow
-  : generate < 60 ?
-  medium
   : generate < 75 ?
-  mHigh
+  medium
   : generate < 99.99 ?
   high
   : 1.33;
 
-  icm.value  = random.toFixed(mDecimals ? 5 : 2);
-  sens.value = (2.54 * 360 / (random * yaw * dpi)).toFixed(mDecimals ? 5 : 2);
+  $('#icm').val(random.toFixed(mDecimals ? 5 : 2));
+  $('#sensitivity').val((2.54 * 360 / (random * yaw * ($('#dpi').val() || '800'))).toFixed(mDecimals ? 5 : 2));
 }
 
 
@@ -114,9 +156,9 @@ function randomSensFunc() {
 // --------------------------- //
 function randomCoefficientFunc() {
   var generate = Math.random() * 100;
-  var low      = Math.random() * (1.06 - 1.01) + 1.01;
-  var medium   = Math.random() * (1.15 - 1.07) + 1.075;
-  var high     = Math.random() * (1.25 - 1.16) + 1.15;
+  var low      = Math.random() * (1.074 - 1.01) + 1.01;
+  var medium   = Math.random() * (1.15 - 1.075) + 1.075;
+  var high     = Math.random() * (1.3 - 1.16) + 1.16;
   var random   = generate < 60 ? medium : generate < 80 ? low : high;
 
   document.getElementById('coefficient').value = Number(random).toFixed(2);
@@ -322,7 +364,7 @@ var coefficientRange  =  coefficientCm == 92 ?
 : coefficientCm >= 15 ? 
 'Very high'
 : coefficientCm >= 12 ?
-'Zoomin'
+'Cringe zoomer'
 : coefficientCm == 1.33 ?
 'God sens'
 : coefficientCm == 0.3 ?
@@ -336,12 +378,12 @@ const asheZoom = $('#overwatch-ashe-input').val() || '51.47';
 const widowSens = (sens * (widowZoom / 100)).toFixed(mDecimals ? 5 : 2);
 const asheSens = (sens * (asheZoom / 100)).toFixed(mDecimals ? 5 : 2);
 
-const widowCoefficient = ((0.01 / 0.37890917574) * widowZoom).toFixed(mDecimals ? 5 : 2);
-const asheCoefficient = ((0.01 / 0.51469332771) * asheZoom).toFixed(mDecimals ? 5 : 2);
+const widowCoefficient = ((((tan(((360 * atan(1/ (16/9) * tan((103) * pi/360)))/pi) * pi/360) / tan((30) * pi/360))) / 100) * widowZoom).toFixed(mDecimals ? 5 : 2);
+const asheCoefficient = ((((tan(((360 * atan(1/ (16/9) * tan((103) * pi/360)))/pi) * pi/360) / tan((40) * pi/360))) / 100) * asheZoom).toFixed(mDecimals ? 5 : 2);
 
 
 // CS:GO Settings
-const csZoom = $('#cs-zoom-input').val() || '0.818933027098955175';
+const csZoom = $('#cs-zoom-input').val() || '0.82';
 const augSens = ((45/90) * sens * csZoom).toFixed(mDecimals ? 5 : 2);
 const ssg1Sens = ((40/90) * sens * csZoom).toFixed(mDecimals ? 5 : 2);
 const ssg2Sens = ((15/90) * sens * csZoom).toFixed(mDecimals ? 5 : 2);
@@ -364,14 +406,14 @@ const apex6x = $('#apex-6x-input').val() || '1';
 const apex8x = $('#apex-8x-input').val() || '1';
 const apex10x = $('#apex-10x-input').val() || '1';
 
-const apex1xFov = fbt / (7/6);
+const apex1xFov = fbt / (70/60);
 const apexArFov = fbt / (70/55);
-const apex2xFov = fbt / (70/38.6);
-const apex3xFov = fbt / (70/26.28);
-const apex4xFov = fbt / (70/19.86);
-const apex6xFov = fbt / (70/13.312);
-const apex8xFov = fbt / (70/10.004);
-const apex10xFov = fbt / (70/8.01);
+const apex2xFov = fbt / (70/38.59068547066244);
+const apex3xFov = fbt / (70/26.27556256);
+const apex4xFov = fbt / (70/19.85825982);
+const apex6xFov = fbt / (70/13.31276054);
+const apex8xFov = fbt / (70/10.00423937);
+const apex10xFov = fbt / (70/8.010712494);
 
 const apex1xOutput = (sens / ((tan((fbt) * pi/360) / tan((apex1xFov) * pi/360))) * apex1x).toFixed(mDecimals ? 5 : 2);
 const apexArOutput = (sens / ((tan((fbt) * pi/360) / tan((apexArFov) * pi/360))) * apex1x).toFixed(mDecimals ? 5 : 2);
@@ -407,7 +449,7 @@ $('#coefficient-range').html(coefficientRange);
 $('#overwatch-sens').html(overwatch);
 $('#quake-sens').html(quake);
 $('#valorant-sens').html(valorant);
-$('#fornite-sens').html(fortnite);
+$('#fortnite-sens').html(fortnite);
 
 // FOV Converter //
 $('#16by9').html(sbn);
@@ -447,35 +489,52 @@ $('#awp2-coefficient').html(awp2Coefficient);
 }
 
 // Apex Outputs //
-$('#hipfire-sens').html(sens);
-$('#1x-sens').html(apex1xOutput);
-$('#ar-sens').html(apexArOutput);
-$('#2x-sens').html(apex2xOutput);
-$('#3x-sens').html(apex3xOutput);
-$('#4x-sens').html(apex4xOutput);
-$('#6x-sens').html(apex6xOutput);
-$('#8x-sens').html(apex8xOutput);
-$('#10x-sens').html(apex10xOutput);
-$('#hipfire-cm').html(cm360);
-$('#1x-cm').html((2.54 * 360 / (apex1xOutput * yaw * dpi)).toFixed(mDecimals ? 5 : 2));
-$('#ar-cm').html((2.54 * 360 / (apexArOutput * yaw * dpi)).toFixed(mDecimals ? 5 : 2));
-$('#2x-cm').html((2.54 * 360 / (apex2xOutput * yaw * dpi)).toFixed(mDecimals ? 5 : 2));
-$('#3x-cm').html((2.54 * 360 / (apex3xOutput * yaw * dpi)).toFixed(mDecimals ? 5 : 2));
-$('#4x-cm').html((2.54 * 360 / (apex4xOutput * yaw * dpi)).toFixed(mDecimals ? 5 : 2));
-$('#6x-cm').html((2.54 * 360 / (apex6xOutput * yaw * dpi)).toFixed(mDecimals ? 5 : 2));
-$('#8x-cm').html((2.54 * 360 / (apex8xOutput * yaw * dpi)).toFixed(mDecimals ? 5 : 2));
-$('#10x-cm').html((2.54 * 360 / (apex10xOutput * yaw * dpi)).toFixed(mDecimals ? 5 : 2));
-$('#hipfire-fov').html(fbt);
-$('#1x-fov').html((fbt / (7/6)).toFixed(mDecimals ? 5 : 2));
-$('#ar-fov').html((fbt / (70/55)).toFixed(mDecimals ? 5 : 2));
-$('#2x-fov').html((fbt / (70/38.6)).toFixed(mDecimals ? 5 : 2));
-$('#3x-fov').html((fbt / (70/26.28)).toFixed(mDecimals ? 5 : 2));
-$('#4x-fov').html((fbt / (70/19.86)).toFixed(mDecimals ? 5 : 2));
-$('#6x-fov').html((fbt / (70/13.312)).toFixed(mDecimals ? 5 : 2));
-$('#8x-fov').html((fbt / (70/10.004)).toFixed(mDecimals ? 5 : 2));
-$('#10x-fov').html((fbt / (70/8.01)).toFixed(mDecimals ? 5 : 2));
-}$().ready(calculate);
+$('#apex-1x-sens').html(apex1xOutput);
+$('#apex-ar-sens').html(apexArOutput);
+$('#apex-2x-sens').html(apex2xOutput);
+$('#apex-3x-sens').html(apex3xOutput);
+$('#apex-4x-sens').html(apex4xOutput);
+$('#apex-6x-sens').html(apex6xOutput);
+$('#apex-8x-sens').html(apex8xOutput);
+$('#apex-10x-sens').html(apex10xOutput);
+$('#apex-1x-cm').html((2.54 * 360 / (apex1xOutput * yaw * dpi)).toFixed(mDecimals ? 5 : 2));
+$('#apex-ar-cm').html((2.54 * 360 / (apexArOutput * yaw * dpi)).toFixed(mDecimals ? 5 : 2));
+$('#apex-2x-cm').html((2.54 * 360 / (apex2xOutput * yaw * dpi)).toFixed(mDecimals ? 5 : 2));
+$('#apex-3x-cm').html((2.54 * 360 / (apex3xOutput * yaw * dpi)).toFixed(mDecimals ? 5 : 2));
+$('#apex-4x-cm').html((2.54 * 360 / (apex4xOutput * yaw * dpi)).toFixed(mDecimals ? 5 : 2));
+$('#apex-6x-cm').html((2.54 * 360 / (apex6xOutput * yaw * dpi)).toFixed(mDecimals ? 5 : 2));
+$('#apex-8x-cm').html((2.54 * 360 / (apex8xOutput * yaw * dpi)).toFixed(mDecimals ? 5 : 2));
+$('#apex-10x-cm').html((2.54 * 360 / (apex10xOutput * yaw * dpi)).toFixed(mDecimals ? 5 : 2));
+$('#apex-1x-magnification').html((tan((70) * pi/360) / tan((60) * pi/360)).toFixed(mDecimals ? 5 : 2))
+$('#apex-ar-magnification').html((tan((70) * pi/360) / tan((55) * pi/360)).toFixed(mDecimals ? 5 : 2))
+$('#apex-2x-magnification').html((tan((70) * pi/360) / tan((38.59068547066244) * pi/360)).toFixed(mDecimals ? 5 : 2))
+$('#apex-3x-magnification').html((tan((70) * pi/360) / tan((26.27556256) * pi/360)).toFixed(mDecimals ? 5 : 2))
+$('#apex-4x-magnification').html((tan((70) * pi/360) / tan((19.85825982) * pi/360)).toFixed(mDecimals ? 5 : 2))
+$('#apex-6x-magnification').html((tan((70) * pi/360) / tan((13.31276054) * pi/360)).toFixed(mDecimals ? 5 : 2))
+$('#apex-8x-magnification').html((tan((70) * pi/360) / tan((70/10.00423937) * pi/360)).toFixed(mDecimals ? 5 : 2))
+$('#apex-10x-magnification').html((tan((70) * pi/360) / tan((70/8.010712494) * pi/360)).toFixed(mDecimals ? 5 : 2))
 
+
+// Valorant Outputs
+const valorantZoom = $('#valorant-zoom').val() || '1';
+
+$('#valorant-smg-sens').html(((sens * valorantZoom) * ((103/1.15) / 103)).toFixed(mDecimals ? 5 : 2));
+$('#valorant-ar-sens').html(((sens * valorantZoom) * ((103/1.25) / 103)).toFixed(mDecimals ? 5 : 2));
+$('#valorant-gaurdian-sens').html(((sens * valorantZoom) * ((103/1.5) / 103)).toFixed(mDecimals ? 5 : 2));
+$('#valorant-sniper-sens').html(((sens * valorantZoom) * ((103/2.5) / 103)).toFixed(mDecimals ? 5 : 2));
+$('#valorant-operator-x2-sens').html(((sens * valorantZoom) * ((103/5) / 103)).toFixed(mDecimals ? 5 : 2));
+$('#valorant-smg-cm').html((2.54 * 360 / ((sens * valorantZoom) * ((103/1.15) / 103) * yaw * dpi)).toFixed(mDecimals ? 5 : 2));
+$('#valorant-ar-cm').html((2.54 * 360 / ((sens * valorantZoom) * ((103/1.25) / 103) * yaw * dpi)).toFixed(mDecimals ? 5 : 2));
+$('#valorant-gaurdian-cm').html((2.54 * 360 / ((sens * valorantZoom) * ((103/1.5) / 103) * yaw * dpi)).toFixed(mDecimals ? 5 : 2));
+$('#valorant-sniper-cm').html((2.54 * 360 / ((sens * valorantZoom) * ((103/2.5) / 103) * yaw * dpi)).toFixed(mDecimals ? 5 : 2));
+$('#valorant-operator-x2-cm').html((2.54 * 360 / ((sens * valorantZoom) * ((103/5) / 103) * yaw * dpi)).toFixed(mDecimals ? 5 : 2));
+
+$('#valorant-smg-coefficient').html((1 / ((1 / ((tan((103) * pi/360) / tan((103/1.15) * pi/360)))) / ((103/1.15)/103)) * valorantZoom).toFixed(mDecimals ? 5 : 2));
+$('#valorant-ar-coefficient').html((1 / ((1 / ((tan((103) * pi/360) / tan((103/1.25) * pi/360)))) / ((103/1.25)/103)) * valorantZoom).toFixed(mDecimals ? 5 : 2));
+$('#valorant-gaurdian-coefficient').html((1 / ((1 / ((tan((103) * pi/360) / tan((103/1.5) * pi/360)))) / ((103/1.5)/103)) * valorantZoom).toFixed(mDecimals ? 5 : 2));
+$('#valorant-sniper-coefficient').html((1 / ((1 / ((tan((103) * pi/360) / tan((103/2.5) * pi/360)))) / ((103/2.5)/103)) * valorantZoom).toFixed(mDecimals ? 5 : 2));
+$('#valorant-operator-x2-coefficient').html((1 / ((1 / ((tan((103) * pi/360) / tan((103/5) * pi/360)))) / ((103/5)/103)) * valorantZoom).toFixed(mDecimals ? 5 : 2));
+}$().ready(calculate);
 
 
 /*
